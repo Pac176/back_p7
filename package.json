@@ -1,0 +1,23 @@
+{
+  "name": "groupomania_p7",
+  "version": "1.0.0",
+  "description": "Reseau social d'entreprise",
+  "main": "app.js",
+  "scripts": {
+    "nodemon": "nodemon server",
+    "eslint": "eslint **/*.js --fix"
+  },
+  "author": "Pascal Godbille",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.19.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-vue": "^7.5.0"
+  }
+}
