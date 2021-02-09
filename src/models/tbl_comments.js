@@ -27,11 +27,13 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
+    /* createdAt : Sequelize.DATE */
     created_at: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: Sequelize.fn('current_timestamp')
     },
+    /* updatedAt: Sequelize.DATE */
     update_at: {
       type: DataTypes.DATE,
       allowNull: true
