@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('tbl_comments', {
     id: {
       autoIncrement: true,
@@ -44,27 +44,27 @@ module.exports = function(sequelize, DataTypes) {
     timestamps: false,
     indexes: [
       {
-        name: "PRIMARY",
+        name: 'PRIMARY',
         unique: true,
-        using: "BTREE",
+        using: 'BTREE',
         fields: [
-          { name: "id" },
+          { name: 'id' }
         ]
       },
       {
-        name: "post_id",
-        using: "BTREE",
+        name: 'post_id',
+        using: 'BTREE',
         fields: [
-          { name: "post_id" },
+          { name: 'post_id' }
         ]
       },
       {
-        name: "user_id",
-        using: "BTREE",
+        name: 'user_id',
+        using: 'BTREE',
         fields: [
-          { name: "user_id" },
+          { name: 'user_id' }
         ]
-      },
+      }
     ]
   });
 };
