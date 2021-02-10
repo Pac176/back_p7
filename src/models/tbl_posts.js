@@ -29,12 +29,12 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(60),
         allowNull: true
       },
-      created_at: {
+      createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: Sequelize.fn('current_timestamp')
       },
-      update_at: {
+      updatedAt: {
         type: DataTypes.DATE,
         allowNull: true
       },

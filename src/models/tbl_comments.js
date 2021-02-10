@@ -28,13 +28,13 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
     /* createdAt : Sequelize.DATE */
-    created_at: {
+    createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: Sequelize.fn('current_timestamp')
     },
     /* updatedAt: Sequelize.DATE */
-    update_at: {
+    updatedAt: {
       type: DataTypes.DATE,
       allowNull: true
     }
