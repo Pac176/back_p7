@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const serveFavicon = require('serve-favicon');
 const sequelize = require('./src/db/sequelize');
 const userRoutes = require('./src/routes/users');
-
+const postRoutes = require('./src/routes/posts');
 sequelize.initDb();
 
 app
@@ -16,5 +16,6 @@ app
 app.get('/', (req, res) => res.send('Hello, Groupomania est en construction!!!😃'));
 
 app.use('/api/groupomania/', userRoutes);
+app.use('/api/groupomania/', postRoutes);
 
 module.exports = app;
