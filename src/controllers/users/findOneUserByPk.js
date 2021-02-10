@@ -5,6 +5,6 @@ exports.findOneUser = (req, res) => {
   User.findByPk(req.params.id).then((user) => {
     const message = "L'utilisateur a bien été trouvé.";
     res.json({ message, data: user });
-    console.log(user.toJSON());
+    console.log("voici l'utilisateur recherché: ", user.toJSON());
   });
 };
