@@ -18,6 +18,8 @@ module.exports = {
           model: "tbl_users",
           key: "id",
         },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       file_path: {
         type: Sequelize.STRING(60),
