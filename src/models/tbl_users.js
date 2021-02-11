@@ -22,11 +22,11 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: true
       },
       password: {
-        type: DataTypes.STRING(10),
+        type: DataTypes.STRING(60),
         allowNull: false
       },
       email: {
-        type: DataTypes.STRING(50),
+        type: DataTypes.STRING(60),
         allowNull: false
       },
       image_path: {
@@ -46,7 +46,7 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: true
       },
       is_admin: {
-        type: DataTypes.TINYINT,
+        type: DataTypes.TINYINT.UNSIGNED,
         allowNull: true,
         defaultValue: 0
       }
