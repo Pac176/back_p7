@@ -5,7 +5,10 @@
   "main": "app.js",
   "scripts": {
     "nodemon": "nodemon server",
-    "eslint": "eslint **/*.js --fix"
+    "eslint": "eslint **/*.js --fix",
+    "migratedb":"npx sequelize-cli db:migrate",
+    "migrateundodb":"npx sequelize-cli db:migrate:undo:all",
+    "seedAll": "npx sequelize-cli db:seed:all"
   },
   "author": "Pascal Godbille",
   "license": "ISC",
@@ -27,6 +30,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-vue": "^7.5.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "sequelize-cli": "^6.2.0"
   }
 }
