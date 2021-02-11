@@ -10,8 +10,8 @@ const router = express.Router();
 // const user = require("../middleware/validUser");
 // const limiter = require("../utils/limiter");
 
-router.post('/signup' /* limiter.speedLimiter,limiter.tryLimiter,user.userSignupValidation, *//* userControllers.signup */);
-router.post('/login' /* limiter.speedLimiter,limiter.tryLimiter,user.userLoginValidation, *//* userControllers.login */);
+// router.post('/signup' /* limiter.speedLimiter,limiter.tryLimiter,user.userSignupValidation, *//* userControllers.signup */);
+// router.post('/login' /* limiter.speedLimiter,limiter.tryLimiter,user.userLoginValidation, *//* userControllers.login */);
 router.get('/users', findAllUsers); /// fonction admin
 router.get('/users/:id', findOneUser); /// fonction admin/user
 router.post('/users', createUser); /// fonction admin

@@ -29,23 +29,12 @@ module.exports = function (sequelize, DataTypes) {
           key: "id",
         },
       },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.fn("current_timestamp"),
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.fn(
-          "current_timestamp on update current_timestamp"
-        ),
-      },
     },
     {
       sequelize,
       tableName: "tbl_comments",
-      timestamps: false,
+      timestamps: true,
+      underscore: true,
       indexes: [
         {
           name: "PRIMARY",

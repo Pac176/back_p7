@@ -33,20 +33,8 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(60),
         allowNull: true,
       },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.fn("current_timestamp"),
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.fn(
-          "current_timestamp on update current_timestamp"
-        ),
-      },
-      connexion_at: {
-        type: DataTypes.DATE,
+      nb_posts: {
+        type: DataTypes.SMALLINT.UNSIGNED,
         allowNull: true,
       },
       nb_connexions: {
@@ -62,7 +50,8 @@ module.exports = function (sequelize, DataTypes) {
     {
       sequelize,
       tableName: "tbl_users",
-      timestamps: false,
+      timestamps: true,
+      underscore: true,
       indexes: [
         {
           name: "PRIMARY",

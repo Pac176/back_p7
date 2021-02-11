@@ -2,7 +2,7 @@ const { dbModel } = require('../../db/sequelize');
 const Post = dbModel.tbl_posts;
 
 exports.updatePost = (req, res) => {
-    console.log(req.body)
+  console.log(req.body);
   Post.findByPk(req.params.id)
     .then((post) => {
       const oldpost = post;

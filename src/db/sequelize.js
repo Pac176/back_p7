@@ -3,13 +3,16 @@ const { Sequelize, DataTypes } = require('sequelize');
 const initModels = require('../models/init-models');
 
 const sequelize = new Sequelize(
-  'groupomania_p7',
-  process.env.DB_USER_p7,
-  process.env.DB_PASS_p7,
+  "groupomania_p7",
+  //process.env.DB_USER_p7,
+  "root",
+ // process.env.DB_PASS_p7,
+  "",
   {
-    host: process.env.DB_HOST_p7,
-    dialect: 'mariadb',
-    logging: false
+    host: /* process.env.DB_HOST_p7 */"localhost",
+    dialect: "mariadb",
+    logging: true,
+    timezone: "Europe/Paris",
   }
 );
 /* le modele de la base est defini */

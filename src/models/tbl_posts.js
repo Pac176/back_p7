@@ -9,10 +9,6 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         primaryKey: true,
       },
-      title: {
-        type: DataTypes.STRING(60),
-        allowNull: false,
-      },
       post_content: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -29,16 +25,6 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(60),
         allowNull: true,
       },
-      createdAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.fn("current_timestamp"),
-      },
-      updatedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: Sequelize.fn("current_timestamp on update current_timestamp"),
-      },
       nb_likes: {
         type: DataTypes.SMALLINT.UNSIGNED,
         allowNull: false,
@@ -53,7 +39,8 @@ module.exports = function (sequelize, DataTypes) {
     {
       sequelize,
       tableName: "tbl_posts",
-      timestamps: false,
+      timestamps: true,
+      underscore: true,
       indexes: [
         {
           name: "PRIMARY",
