@@ -1,71 +1,72 @@
 const Sequelize = require('sequelize');
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    'tbl_posts',
+    "tbl_posts",
     {
       id: {
         autoIncrement: true,
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
       },
       title: {
         type: DataTypes.STRING(60),
-        allowNull: false
+        allowNull: false,
       },
       post_content: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: false,
       },
       user_id: {
         type: DataTypes.SMALLINT.UNSIGNED,
         allowNull: false,
         references: {
-          model: 'tbl_users',
-          key: 'id'
-        }
+          model: "tbl_users",
+          key: "id",
+        },
       },
       file_path: {
         type: DataTypes.STRING(60),
-        allowNull: true
+        allowNull: true,
       },
       createdAt: {
         type: DataTypes.DATE,
         allowNull: false,
-        defaultValue: Sequelize.fn('current_timestamp')
+        defaultValue: Sequelize.fn("current_timestamp"),
       },
       updatedAt: {
         type: DataTypes.DATE,
-        allowNull: true
+        allowNull: false,
+        defaultValue: Sequelize.fn("current_timestamp on update current_timestamp"),
       },
       nb_likes: {
         type: DataTypes.SMALLINT.UNSIGNED,
         allowNull: false,
-        defaultValue: 0
+        defaultValue: 0,
       },
       nb_unlikes: {
         type: DataTypes.SMALLINT.UNSIGNED,
         allowNull: false,
-        defaultValue: 0
-      }
+        defaultValue: 0,
+      },
     },
     {
       sequelize,
-      tableName: 'tbl_posts',
+      tableName: "tbl_posts",
       timestamps: false,
       indexes: [
         {
-          name: 'PRIMARY',
+          name: "PRIMARY",
           unique: true,
-          using: 'BTREE',
-          fields: [{ name: 'id' }]
+          using: "BTREE",
+          fields: [{ name: "id" }],
         },
         {
-          name: 'user_id',
-          using: 'BTREE',
-          fields: [{ name: 'user_id' }]
-        }
-      ]
+          name: "user_id",
+          using: "BTREE",
+          fields: [{ name: "user_id" }],
+        },
+      ],
     }
   );
 };
