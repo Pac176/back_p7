@@ -1,20 +1,33 @@
-const Sequelize = require('sequelize');
-module.exports = function (sequelize, DataTypes) {
-  return sequelize.define(
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class tbl_comments extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate (models) {
+      // define association here
+    }
+  };
+  tbl_comments.init(
     'tbl_comments',
     {
       id: {
         autoIncrement: true,
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
         primaryKey: true
       },
       comment_content: {
-        type: DataTypes.TEXT,
+        type: Sequelize.TEXT,
         allowNull: false
       },
       post_id: {
-        type: DataTypes.INTEGER.UNSIGNED,
+        type: Sequelize.INTEGER.UNSIGNED,
         allowNull: false,
         references: {
           model: 'tbl_posts',
@@ -22,7 +35,7 @@ module.exports = function (sequelize, DataTypes) {
         }
       },
       user_id: {
-        type: DataTypes.SMALLINT.UNSIGNED,
+        type: Sequelize.SMALLINT.UNSIGNED,
         allowNull: false,
         references: {
           model: 'tbl_users',
@@ -31,7 +44,7 @@ module.exports = function (sequelize, DataTypes) {
       }
     },
     {
-      sequelize,
+      Sequelize,
       tableName: 'tbl_comments',
       timestamps: true,
       underscore: true,
@@ -55,4 +68,5 @@ module.exports = function (sequelize, DataTypes) {
       ]
     }
   );
+  return tbl_comments;
 };
