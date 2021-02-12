@@ -17,12 +17,11 @@ exports.signup = async (req, res, next) => {
     try {
       const signUser = await User.findOrCreate({
         where: { email: emailCrypt },
-        defaults: newUser,
+        defaults: newUser
       });
       if (!signUser[1]) {
         res.status(httpStatus.BAD_REQUEST).json({ message: "L'utilisateur a deja été crée" });
       } else res.status(httpStatus.CREATED).json({ message: 'Utilisateur créé !' });
-
     } catch (error) {
       console.log(error);
       res.status(httpStatus.EXPECTATION_FAILED).json({ error });
