@@ -7,14 +7,18 @@
     "nodemon": "nodemon server",
     "eslint": "eslint **/*.js --fix",
     "seedAll": "npx sequelize-cli db:seed:all",
-    "undoseed":"npx sequelize-cli db:seed:undo:all"
+    "undoseed": "npx sequelize-cli db:seed:undo:all"
   },
   "author": "Pascal Godbille",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "http-status": "^1.5.0",
+    "jsonwebtoken": "^8.5.1",
     "mariadb": "^2.5.2",
     "morgan": "^1.10.0",
     "mysql2": "^2.2.5",

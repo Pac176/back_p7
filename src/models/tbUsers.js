@@ -10,27 +10,27 @@ module.exports = function (sequelize, DataTypes) {
         primaryKey: true
       },
       first_name: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING(100),
         allowNull: false
       },
       last_name: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING(100),
         allowNull: false
       },
       pseudo: {
-        type: DataTypes.STRING(30),
+        type: DataTypes.STRING(100),
         allowNull: true
       },
       password: {
-        type: DataTypes.STRING(60),
+        type: DataTypes.STRING(100),
         allowNull: false
       },
       email: {
-        type: DataTypes.STRING(60),
+        type: DataTypes.STRING(100),
         allowNull: false
       },
       image_path: {
-        type: DataTypes.STRING(60),
+        type: DataTypes.STRING(100),
         allowNull: true
       },
       nb_posts: {
