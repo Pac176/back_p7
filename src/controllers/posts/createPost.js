@@ -3,7 +3,8 @@ const Post = dbModel.tblPosts;
 
 exports.createPost = (req, res) => {
   Post.create(req.body).then((post) => {
-    const message = `Le post ${req.body.title} a bien été crée.`;
+    console.log(post)
+    const message = `Le post d'id:${post.id} de l'utilisateur ${post.user_id} a bien été crée.`;
     res.json({ message, data: post });
     console.log(post.toJSON());
   });

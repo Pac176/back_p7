@@ -10,7 +10,7 @@ exports.destroyOnePost = async (req, res) => {
       id: postDeleted.id
     }
   });
-  const message = `Le post ${postDeleted.id} de l'utilisateur ${user.first_name} ${user.last_name} a bien été supprimé.`;
+  const message = `Le post d'id:${postDeleted.id} de l'utilisateur ${user.dataValues.first_name} ${user.dataValues.last_name} a bien été supprimé.`;
   res.json({ message, data: postDeleted });
   console.log(postDeleted.toJSON());
 };

@@ -43,7 +43,7 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         defaultValue: 0
       },
-      nb_connexions: {
+      nb_connections: {
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
         defaultValue: 0
