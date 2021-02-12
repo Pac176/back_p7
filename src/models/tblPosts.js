@@ -19,7 +19,9 @@ module.exports = function (sequelize, DataTypes) {
         references: {
           model: 'tbl_users',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       },
       file_path: {
         type: DataTypes.STRING(60),

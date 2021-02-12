@@ -19,7 +19,9 @@ module.exports = function (sequelize, DataTypes) {
         references: {
           model: 'tbl_posts',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       },
       user_id: {
         type: DataTypes.SMALLINT.UNSIGNED,
@@ -27,7 +29,9 @@ module.exports = function (sequelize, DataTypes) {
         references: {
           model: 'tbl_users',
           key: 'id'
-        }
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       }
     },
     {
