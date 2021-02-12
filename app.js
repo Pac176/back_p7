@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -9,7 +10,7 @@ const postRoutes = require('./src/routes/posts');
 sequelize.initDb();
 
 app
-  .use(serveFavicon(__dirname + '/groupomania.png'))
+  .use(serveFavicon(path.join(__dirname, '/groupomania.png')))
   .use(morgan('dev'))
   .use(bodyParser.json());
 

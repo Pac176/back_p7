@@ -17,6 +17,7 @@
     "rules": {
         "semi": ["error", "always",{ "omitLastInOneLineBlock": true}],
         "no-useless-escape": ["off"],
-        "camelcase": ["off"]
+        /* "camelcase": ["off"], */
+        "no-unreachable":["off"]
     }
 }
