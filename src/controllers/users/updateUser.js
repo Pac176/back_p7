@@ -1,6 +1,6 @@
 
 const { dbModel } = require('../../db/sequelize');
-const User = dbModel.tbl_users;
+const User = dbModel.tblUsers;
 
 exports.updateUser = (req, res) => {
   User.findByPk(req.params.id)

@@ -1,5 +1,5 @@
 const { dbModel } = require('../../db/sequelize');
-const Post = dbModel.tbl_posts;
+const Post = dbModel.tblPosts;
 
 exports.createPost = (req, res) => {
   Post.create(req.body).then((post) => {

@@ -1,6 +1,6 @@
 const { dbModel } = require('../../db/sequelize');
-const Post = dbModel.tbl_posts;
-const User = dbModel.tbl_users;
+const Post = dbModel.tblPosts;
+const User = dbModel.tblUsers;
 
 exports.findAllPosts = (req, res) => {
   Post.findAndCountAll()

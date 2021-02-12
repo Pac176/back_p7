@@ -1,5 +1,5 @@
 const { dbModel } = require('../../db/sequelize');
-const User = dbModel.tbl_users;
+const User = dbModel.tblUsers;
 
 exports.destroyOneUser = (req, res) => {
   User.findByPk(req.params.id).then(user => {

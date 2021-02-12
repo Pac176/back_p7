@@ -1,5 +1,5 @@
 const { dbModel } = require('../../db/sequelize');
-const Post = dbModel.tbl_users;
+const Post = dbModel.tblUsers;
 
 exports.findOnePost = (req, res) => {
   Post.findByPk(req.params.id).then((post) => {

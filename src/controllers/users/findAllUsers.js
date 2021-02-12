@@ -1,5 +1,5 @@
 const { dbModel } = require('../../db/sequelize');
-const User = dbModel.tbl_users;
+const User = dbModel.tblUsers;
 
 exports.findAllUsers = (req, res) => {
   User.findAndCountAll()
