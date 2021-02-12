@@ -1,4 +1,4 @@
-const Sequelize = require('sequelize');
+
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
     'tbl_users',
@@ -35,19 +35,22 @@ module.exports = function (sequelize, DataTypes) {
       },
       nb_posts: {
         type: DataTypes.SMALLINT.UNSIGNED,
-        allowNull: true
+        allowNull: false,
+        defaultValue: 0
       },
       nb_comments: {
         type: DataTypes.SMALLINT.UNSIGNED,
-        allowNull: true
+        allowNull: false,
+        defaultValue: 0
       },
       nb_connexions: {
         type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: true
+        allowNull: false,
+        defaultValue: 0
       },
       is_admin: {
         type: DataTypes.TINYINT.UNSIGNED,
-        allowNull: true,
+        allowNull: false,
         defaultValue: 0
       }
     },

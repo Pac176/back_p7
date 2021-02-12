@@ -6,8 +6,6 @@
   "scripts": {
     "nodemon": "nodemon server",
     "eslint": "eslint **/*.js --fix",
-    "migratedb":"npx sequelize-cli db:migrate",
-    "migrateundodb":"npx sequelize-cli db:migrate:undo:all",
     "seedAll": "npx sequelize-cli db:seed:all",
     "undoseed":"npx sequelize-cli db:seed:undo:all"
   },
