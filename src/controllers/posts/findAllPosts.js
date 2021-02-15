@@ -2,23 +2,28 @@ const { dbModel } = require('../../db/sequelize');
 const Post = dbModel.tblPosts;
 const User = dbModel.tblUsers;
 
-exports.findAllPosts = (req, res) => {
-  Post.findAndCountAll()
-    .then((posts) => {
-      const message = 'La liste des posts a bien été récupérée.';
-      res.json({ message, data: posts });
-      console.log('il y a', posts.count, 'posts dans la database');
-    });
+exports.findAllPosts = async (req, res) => {
+  try {
+    const allPosts = await Post.findAndCountAll();
+    const message = 'La liste des posts a bien été récupérée.';
+    res.json({ message, data: allPosts });
+    console.log('il y a', allPosts.count, 'posts dans la database');
+  } catch (error) {
+
+  }
 };
 
-exports.findAllPostsByUserId = (req, res) => {
-  User.findByPk(req.params.id).then((user) => {
-    Post.findAndCountAll({
+exports.findAllPostsByUserId = async (req, res) => {
+  try {
+    const writerPost = await User.findByPk(req.params.id);
+    const allPostsByUserId = await Post.findAndCountAll({
       where: { user_id: req.params.id }
-    }).then((posts) => {
-      const message = `La liste des posts de ${user.first_name} ${user.last_name} a bien été récupérée.`;
-      res.json({ message, data: posts });
-      console.log("l'utilisateur", user.first_name, user.last_name, 'à', posts.count, 'posts');
     });
-  });
+    const message = `La liste des posts de ${writerPost.first_name} ${writerPost.last_name} a bien été récupérée.`;
+    res.json({ message, data: allPostsByUserId });
+    console.log("l'utilisateur", writerPost.first_name, writerPost.last_name,'à', allPostsByUserId.count,'posts'
+    );
+  } catch (error) {
+
+  }
 };

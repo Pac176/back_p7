@@ -1,12 +1,13 @@
 const { dbModel } = require('../../db/sequelize');
 const Comment = dbModel.tblComments;
 
-exports.createComment = (req, res) => {
-  console.log(req.body);
-  Comment.create(req.body.comment).then((comment) => {
-    console.log(comment);
-    const message = `Le comment d'id:${comment.id} de l'utilisateur ${comment.user_id} a bien été crée.`;
-    res.json({ message, data: comment });
-    console.log(comment.toJSON());
-  });
+exports.createComment = async (req, res) => {
+  try {
+    const newComment = await Comment.create(req.body.comment);
+    const message = `Le comment d'id:${newComment.id} de l'utilisateur ${newComment.user_id} a bien été crée.`;
+    res.json({ message, data: newComment });
+    console.log(newComment.toJSON());
+  } catch (error) {
+    console.log(error);
+  }
 };

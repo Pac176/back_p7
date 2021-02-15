@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
+    "username": "225930_admin_p7",
+    "password": "3T53f3eXe995SgmnLhCF",
     "database": "groupomania_p7",
-    "host": "127.0.0.1",
+    "host": "mysql-groupomania.alwaysdata.net",
     "dialect": "mysql"
   },
   "test": {

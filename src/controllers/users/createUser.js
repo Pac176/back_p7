@@ -7,5 +7,7 @@ exports.createUser = async (req, res) => {
     const message = `L'utilisateur ${req.body.first_name} ${req.body.last_name} a bien été crée.`;
     res.json({ message, data: newUser });
     console.log(newUser.toJSON());
-  } catch {}
+  } catch (error) {
+    console.log(error);
+  }
 };
