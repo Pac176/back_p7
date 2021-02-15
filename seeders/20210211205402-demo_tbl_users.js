@@ -1,4 +1,6 @@
 'use strict';
+const bcrypt = require('bcrypt');
+const crypto = require('../src/middleware/crypto');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -6,8 +8,8 @@ module.exports = {
       {
         first_name: 'John',
         last_name: 'Doe',
-        password: 'fdsvdfsvds',
-        email: 'example@example.com',
+        password: bcrypt.hashSync('password', 10),
+        email: crypto.encrypt('example@example.com'),
         is_admin: 1,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -15,16 +17,16 @@ module.exports = {
       {
         first_name: 'pascal',
         last_name: 'Godbille',
-        password: 'ffdsfdvcsdcvsdvcs',
-        email: 'pascalemail@example.com',
+        password: bcrypt.hashSync('password', 10),
+        email: crypto.encrypt('pascalemail@example.com'),
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
         first_name: 'Kevin',
         last_name: 'montero',
-        password: 'sdqqs',
-        email: 'kevinemail@example.com',
+        password: bcrypt.hashSync('password', 10),
+        email: crypto.encrypt('kevinemail@example.com'),
         createdAt: new Date(),
         updatedAt: new Date()
       }
