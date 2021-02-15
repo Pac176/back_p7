@@ -11,3 +11,23 @@ exports.findAllComments = async (req, res) => {
     console.log(error);
   }
 };
+
+exports.findAllCommentsByUserId = async (req, res) => {
+  console.log(req.params);
+  try {
+    const writerComments = await User.findByPk(req.params.id);
+    const allCommentsByUser = await Comment.findAndCountAll({
+      where: { user_id: req.params.id }
+    });
+    const message = `La liste des comments de ${writerComments.first_name} ${writerComments.last_name} a bien été récupérée.`;
+    res.json({ message, data: allCommentsByUser });
+    console.log(
+      "l'utilisateur",
+      writerComments.first_name,
+      writerComments.last_name,
+      'à',
+      allCommentsByUser.count,
+      'comments'
+    );
+  } catch (error) {}
+};

@@ -8,6 +8,6 @@ exports.findOnePost = async (req, res) => {
     res.json({ message, data: findPost });
     console.log('voici le post: ', findPost.toJSON());
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };

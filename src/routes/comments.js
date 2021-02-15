@@ -1,6 +1,6 @@
 const express = require('express');
 const { createComment } = require('../controllers/comments/createComment');
-const { findAllComments } = require('../controllers/comments/findAllComments');
+const { findAllComments, findAllCommentsByUserId } = require('../controllers/comments/findAllComments');
 const { findOneComment } = require('../controllers/comments/findOneComment');
 const router = express.Router();
 
@@ -8,10 +8,12 @@ const router = express.Router();
 // const user = require("../middleware/validUser");
 // const limiter = require("../utils/limiter");
 
-router.get('/comments', findAllComments); /// fonction admin
+router.get('/', findAllComments); /// fonction admin
+router.get('/users/:id', findAllCommentsByUserId); /// fonction admin
+
 // router.get('/comments/user/:id', findAllCommentsByUserId); /// fonction admin . user
-router.get('/comments/:id', findOneComment); /// fonction admin/user
-router.post('/posts/:id/comments', createComment); /// fonction admin
+router.get('/:id', findOneComment); /// fonction admin/user
+router.post('/posts/:id', createComment); /// fonction admin
 // router.put('/comments/:id', updateComment); /// fonction admin
 // router.delete('/comments/:id', destroyOneComments); /// fonction admin
 

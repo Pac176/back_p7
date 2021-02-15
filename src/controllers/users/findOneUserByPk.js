@@ -8,6 +8,6 @@ exports.findOneUser = async (req, res) => {
     res.json({ message, data: findUser });
     console.log("voici l'utilisateur recherché: ", findUser.toJSON());
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };
