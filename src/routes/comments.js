@@ -1,7 +1,7 @@
 const express = require('express');
 const { createComment } = require('../controllers/comments/createComment');
 const { findAllComments } = require('../controllers/comments/findAllComments');
-
+const { findOneComment } = require('../controllers/comments/findOneComment');
 const router = express.Router();
 
 // const userControllers = require("../controllers/user");
