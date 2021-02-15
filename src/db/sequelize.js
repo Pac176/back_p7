@@ -4,9 +4,9 @@ const initModels = require('../models/init-models');
 
 const sequelize = new Sequelize(
   'groupomania_p7',
-   process.env.DB_USER_p7,
-  //'root',
-   process.env.DB_PASS_p7,
+  process.env.DB_USER_p7,
+  // 'root',
+  process.env.DB_PASS_p7,
   /* '', */
   {
     host: process.env.DB_HOST_p7 /* 'localhost' */,
