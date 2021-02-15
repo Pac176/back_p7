@@ -21,7 +21,7 @@ exports.findAllPostsByUserId = async (req, res) => {
     });
     const message = `La liste des posts de ${writerPost.first_name} ${writerPost.last_name} a bien été récupérée.`;
     res.json({ message, data: allPostsByUserId });
-    console.log("l'utilisateur", writerPost.first_name, writerPost.last_name,'à', allPostsByUserId.count,'posts'
+    console.log("l'utilisateur", writerPost.first_name, writerPost.last_name, 'à', allPostsByUserId.count, 'posts'
     );
   } catch (error) {
 
