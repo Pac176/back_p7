@@ -11,7 +11,7 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST_p7 /* 'localhost' */,
     dialect: 'mariadb',
-    logging: true,
+    logging: false, /// /true pour voir les operations dans la console
     timezone: 'Europe/Paris'
   }
 );

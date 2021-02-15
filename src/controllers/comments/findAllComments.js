@@ -1,3 +1,4 @@
+const httpStatus = require('http-status');
 const { dbModel } = require('../../db/sequelize');
 const Comment = dbModel.tblComments;
 
@@ -8,7 +9,10 @@ exports.findAllComments = async (req, res) => {
     res.json({ message, data: allComments });
     console.log('il y a', allComments.count, 'utilisateurs dans la database');
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+    return res
+      .status(httpStatus.BAD_REQUEST)
+      .json({ error: 'la requete a échouée' });
   }
 };
 

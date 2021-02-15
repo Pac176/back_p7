@@ -1,4 +1,4 @@
-
+const httpStatus = require('http-status');
 const { dbModel } = require('../../db/sequelize');
 const User = dbModel.tblUsers;
 const crypto = require('../../middleware/crypto');

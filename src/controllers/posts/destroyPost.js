@@ -1,3 +1,4 @@
+const httpStatus = require('http-status');
 const { dbModel } = require('../../db/sequelize');
 const Post = dbModel.tblPosts;
 const User = dbModel.tblUsers;
