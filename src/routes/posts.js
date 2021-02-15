@@ -4,6 +4,7 @@ const { findAllPosts, findAllPostsByUserId } = require('../controllers/posts/fin
 const { findOnePost } = require('../controllers/posts/findOnePost');
 const { updatePost } = require('../controllers/posts/updatePost');
 const { createPost } = require('../controllers/posts/createPost');
+const auth = require('../middleware/auth');
 const router = express.Router();
 
 // const userControllers = require("../controllers/user");
