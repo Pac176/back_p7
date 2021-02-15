@@ -15,13 +15,13 @@ exports.findAllPosts = async (req, res) => {
 
 exports.findAllPostsByUserId = async (req, res) => {
   try {
-    const writerPost = await User.findByPk(req.params.id);
+    const writerPosts = await User.findByPk(req.params.id);
     const allPostsByUserId = await Post.findAndCountAll({
       where: { user_id: req.params.id }
     });
-    const message = `La liste des posts de ${writerPost.first_name} ${writerPost.last_name} a bien été récupérée.`;
+    const message = `La liste des posts de ${writerPosts.first_name} ${writerPosts.last_name} a bien été récupérée.`;
     res.json({ message, data: allPostsByUserId });
-    console.log("l'utilisateur", writerPost.first_name, writerPost.last_name, 'à', allPostsByUserId.count, 'posts'
+    console.log("l'utilisateur", writerPosts.first_name, writerPosts.last_name, 'à', allPostsByUserId.count, 'posts'
     );
   } catch (error) {
 
