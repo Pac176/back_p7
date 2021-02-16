@@ -4,7 +4,6 @@ const User = dbModel.tblUsers;
 
 exports.findOneUser = async (req, res) => {
   try {
-    console.log('geg');
     const findUser = await User.findByPk(req.params.id);
     const message = `L'utilisateur ${findUser.first_name} ${findUser.last_name} a bien été trouvé.`;
     res.json({ message, data: findUser });
