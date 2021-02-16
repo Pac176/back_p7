@@ -3,7 +3,6 @@ const { dbModel } = require('../../db/sequelize');
 const User = dbModel.tblUsers;
 
 exports.createUser = async (req, res) => {
-
   if (req.body !== {}) {
     try {
       const newUser = await User.create(req.body);
