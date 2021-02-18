@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const { dbModel } = require('../../db/sequelize');
-const Post = dbModel.tblUsers;
+const Post = dbModel.tblPosts;
 
 exports.findOnePost = async (req, res) => {
   try {

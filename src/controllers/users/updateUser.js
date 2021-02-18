@@ -5,8 +5,6 @@ const crypto = require('../../middleware/crypto');
 const bcrypt = require('bcrypt');
 
 exports.updateUser = async (req, res) => {
-  /*  console.log(req)
-  if (req.body) { */ /// /////////////question sans body la req ne passe pas là!!
   try {
     const emailCrypt = crypto.encrypt(req.body.email);
     const hash = await bcrypt.hash(req.body.password, 10);
@@ -26,10 +24,4 @@ exports.updateUser = async (req, res) => {
       .status(httpStatus.BAD_REQUEST)
       .json({ error: "l'utilisateur n'a pas été trouvé" });
   }
-}; /* else {
-    console.log(error.message);
-       return res
-         .status(httpStatus.BAD_REQUEST)
-         .json({ error: "la requete a échouée" });
-    }
-  } */
+}; 

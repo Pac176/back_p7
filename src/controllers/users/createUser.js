@@ -3,7 +3,7 @@ const { dbModel } = require('../../db/sequelize');
 const User = dbModel.tblUsers;
 
 exports.createUser = async (req, res) => {
-  if (req.body !== {}) {
+  console.log(req)
     try {
       const newUser = await User.create(req.body);
       const message = `L'utilisateur ${req.body.first_name} ${req.body.last_name} a bien été crée.`;
@@ -15,9 +15,4 @@ exports.createUser = async (req, res) => {
         .status(httpStatus.BAD_REQUEST)
         .json({ error: 'la requete a échouée' });
     }
-  } else {
-    return res
-      .status(httpStatus.BAD_REQUEST)
-      .json({ error: "la requete n'est pas conforme" });
-  }
-};
+  } 
