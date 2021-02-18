@@ -7,9 +7,7 @@ const { createPost } = require('../controllers/posts/createPost');
 const auth = require('../middleware/auth');
 const router = express.Router();
 
-// const userControllers = require("../controllers/user");
 // const user = require("../middleware/validUser");
-// const limiter = require("../utils/limiter");
 
 router.get('/', findAllPosts); /// fonction admin
 router.get('/users/:id', findAllPostsByUserId); /// fonction admin

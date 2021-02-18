@@ -8,6 +8,7 @@ const sequelize = require('./db/sequelize');
 const userRoutes = require('./routes/users');
 const postRoutes = require('./routes/posts');
 const commentRoutes = require('./routes/comments');
+const httpStatus = require('http-status');
 sequelize.initDb();
 
 app
@@ -20,5 +21,10 @@ app.get('/', (req, res) => res.send('Hello, Groupomania est en construction!!!ðŸ
 app.use('/api/groupomania/users', userRoutes);
 app.use('/api/groupomania/posts', postRoutes);
 app.use('/api/groupomania/comments', commentRoutes);
+
+app.get('*', function (req, res) {
+ return res.status(httpStatus.BAD_REQUEST)
+    .json('la page demandÃ©e n\'existe pas');
+});
 
 module.exports = app;
