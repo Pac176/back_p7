@@ -16,12 +16,13 @@ exports.updateUser = async (req, res) => {
     const oldUser = await User.findByPk(req.params.id);
     await User.update(updateUser, { where: { id: req.params.id } });
     const message = `l'utilisateur ${oldUser.last_name} ${oldUser.first_name} a bien été modifié`;
-    res.json({ message, data: req.body });
     console.log(oldUser.toJSON());
+    return res
+      .json({ message, data: req.body });
   } catch (error) {
     console.log(error.message);
     return res
       .status(httpStatus.BAD_REQUEST)
       .json({ error: "l'utilisateur n'a pas été trouvé" });
   }
-}; 
+};

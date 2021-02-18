@@ -20,14 +20,20 @@ exports.signup = async (req, res, next) => {
         defaults: newUser
       });
       if (!signUser[1]) {
-        res.status(httpStatus.BAD_REQUEST).json({ message: "L'utilisateur a deja été crée" });
-      } else res.status(httpStatus.CREATED).json({ message: 'Utilisateur créé !' });
+        return res
+          .status(httpStatus.BAD_REQUEST).json({ message: "L'utilisateur a deja été crée" });
+      } else {
+        return res
+          .status(httpStatus.CREATED).json({ message: 'Utilisateur créé !' })
+      };
     } catch (error) {
       console.log(error);
-      res.status(httpStatus.EXPECTATION_FAILED).json({ error });
+      return res
+        .status(httpStatus.EXPECTATION_FAILED).json({ error });
     }
   } catch (error) {
     console.log(error);
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error });
+    return res
+      .status(httpStatus.INTERNAL_SERVER_ERROR).json({ error });
   }
 };

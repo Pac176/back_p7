@@ -11,8 +11,9 @@ exports.findAllUsers = async (req, res) => {
         .json({ error: "il n'y a pas d'utilisateurs dans la base" });
     } else {
       const message = 'La liste des users a bien été récupérée.';
-      res.json({ message, data: allUsers });
       console.log('il y a', allUsers.count, 'utilisateurs dans la database');
+      return res
+        .json({ message, data: allUsers });
     }
   } catch (error) {
     console.log(error.message);

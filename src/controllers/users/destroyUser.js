@@ -9,12 +9,13 @@ exports.destroyOneUser = async (req, res) => {
       where: { id: deleteUser.id }
     });
     const message = `L'utilisateur ${deleteUser.last_name} ${deleteUser.first_name} a bien été supprimé.`;
-    res.json({ message, data: deleteUser });
     console.log(deleteUser.toJSON());
+    return res
+      .json({ message, data: deleteUser });
   } catch (error) {
     console.log(error.message);
     return res
       .status(httpStatus.BAD_REQUEST)
       .json({ error: "l'utilisateur est deja supprimé" });
   }
-}; 
+};

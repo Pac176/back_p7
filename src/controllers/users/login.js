@@ -29,10 +29,12 @@ exports.login = async (req, res, next) => {
       });
     } catch (error) {
       console.log(error);
-      res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error });
+      return res
+        .status(httpStatus.INTERNAL_SERVER_ERROR).json({ error });
     }
   } catch (error) {
     console.log(error);
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error });
+    return res
+      .status(httpStatus.INTERNAL_SERVER_ERROR).json({ error });
   }
 };
