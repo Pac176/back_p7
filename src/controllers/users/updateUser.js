@@ -18,7 +18,7 @@ exports.updateUser = async (req, res) => {
     const message = `l'utilisateur ${oldUser.last_name} ${oldUser.first_name} a bien été modifié`;
     console.log(oldUser.toJSON());
     return res
-      .json({ message, data: req.body });
+      .json({ message, data: updateUser });
   } catch (error) {
     console.log(error.message);
     return res
