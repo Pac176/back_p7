@@ -50,6 +50,6 @@ exports.findAllPostsByUserId = async (req, res) => {
     console.log(error.message);
     return res
       .status(httpStatus.BAD_REQUEST)
-      .json({ error: "la requete a échouée ou le user n'existe pas" });/// /question message sur cette erreure
+      .json({ error: "la requete a échouée ou le user n'existe pas" });
   }
 };

@@ -7,7 +7,8 @@ exports.findOneComment = async (req, res) => {
     const findComment = await Comment.findByPk(req.params.id);
     const message = `Le comment ${req.params.id} a bien été trouvé.`;
     console.log('voici le comment: ', findComment.toJSON());
-    return res.json({ message, data: findComment });
+    return res
+      .json({ message, data: findComment });
   } catch (error) {
     console.log(error);
   }

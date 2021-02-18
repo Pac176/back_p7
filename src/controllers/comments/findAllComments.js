@@ -1,5 +1,6 @@
 const httpStatus = require('http-status');
 const { dbModel } = require('../../db/sequelize');
+const User = dbModel.tblUsers;
 const Comment = dbModel.tblComments;
 
 exports.findAllComments = async (req, res) => {
@@ -24,14 +25,8 @@ exports.findAllCommentsByUserId = async (req, res) => {
       where: { user_id: req.params.id }
     });
     const message = `La liste des comments de ${writerComments.first_name} ${writerComments.last_name} a bien été récupérée.`;
-    res.json({ message, data: allCommentsByUser });
-    console.log(
-      "l'utilisateur",
-      writerComments.first_name,
-      writerComments.last_name,
-      'à',
-      allCommentsByUser.count,
-      'comments'
-    );
+    console.log("l'utilisateur", writerComments.first_name, writerComments.last_name, 'à', allCommentsByUser.count, 'comments');
+    return res
+      .json({ message, data: allCommentsByUser });
   } catch (error) {}
 };

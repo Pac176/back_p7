@@ -12,7 +12,7 @@ exports.createComment = async (req, res) => {
     } else {
       return res
         .status(httpStatus.BAD_REQUEST)
-        .json({ error: "la requete n'est pas conforme" });
+        .json({ error: 'la requete n\'est pas conforme' });
     }
   } catch (error) {
     console.log(error.message);

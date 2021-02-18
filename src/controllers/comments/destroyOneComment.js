@@ -1,17 +1,16 @@
-const httpStatus = require("http-status");
-const { dbModel } = require("../../db/sequelize");
+const httpStatus = require('http-status');
+const { dbModel } = require('../../db/sequelize');
 const Post = dbModel.tblPosts;
 const Comment = dbModel.tblComments;
 
-
-exports.destroyOneComment  = async (req, res) => {
+exports.destroyOneComment = async (req, res) => {
   try {
-    const commentDeleted = await Post.findByPk(req.params.id);
+    const commentDeleted = await Comment.findByPk(req.params.id);
     const postComment = await Post.findByPk(commentDeleted.post_id);
     await Comment.destroy({
       where: {
-        id: commentDeleted.id,
-      },
+        id: commentDeleted.id
+      }
     });
     const message = `Le comment d'id:${commentDeleted.id} du post ${postComment.id}  a bien été supprimé.`;
     console.log(commentDeleted.toJSON());
@@ -20,6 +19,6 @@ exports.destroyOneComment  = async (req, res) => {
     console.log(error.message);
     return res
       .status(httpStatus.BAD_REQUEST)
-      .json({ error: "le post est deja supprimé ou n'existe pas" });
+      .json({ error: "le comment est deja supprimé ou n'existe pas" });
   }
 };
