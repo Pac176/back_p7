@@ -12,10 +12,10 @@ exports.destroyOnePost = async (req, res) => {
         id: postDeleted.id
       }
     });
-    ////question pourquoi il y a des datavalues
-    const message = `Le post d'id:${postDeleted.id} de l'utilisateur ${user.dataValues.first_name} ${user.dataValues.last_name} a bien été supprimé.`;
-    res.json({ message, data: postDeleted });
+    const message = `Le post d'id:${postDeleted.id} de l'utilisateur ${user.first_name} ${user.last_name} a bien été supprimé.`;
     console.log(postDeleted.toJSON());
+    return res
+      .json({ message, data: postDeleted });
   } catch (error) {
     console.log(error.message);
     return res

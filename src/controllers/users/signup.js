@@ -24,7 +24,7 @@ exports.signup = async (req, res, next) => {
           .status(httpStatus.BAD_REQUEST).json({ message: "L'utilisateur a deja été crée" });
       } else {
         return res
-          .status(httpStatus.CREATED).json({ message: 'Utilisateur créé !' })
+          .status(httpStatus.CREATED).json({ message: 'Utilisateur créé !' });
       };
     } catch (error) {
       console.log(error);

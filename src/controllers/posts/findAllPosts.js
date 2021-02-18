@@ -12,8 +12,9 @@ exports.findAllPosts = async (req, res) => {
         .json({ error: "il n'y a pas de posts dans la base" });
     } else {
       const message = 'La liste des posts a bien été récupérée.';
-      res.json({ message, data: allPosts });
       console.log('il y a', allPosts.count, 'posts dans la database');
+      return res
+        .json({ message, data: allPosts });
     }
   } catch (error) {
     console.log(error.message);
@@ -36,19 +37,13 @@ exports.findAllPostsByUserId = async (req, res) => {
         return res
           .status(httpStatus.OK)
           .json({
-            message: `l'utilisateur ${writerPosts.first_name} ${writerPosts.last_name} n'a écrit aucun post`,
+            message: `l'utilisateur ${writerPosts.first_name} ${writerPosts.last_name} n'a écrit aucun post`
           });
       } else {
         const message = `La liste des posts de ${writerPosts.first_name} ${writerPosts.last_name} a bien été récupérée.`;
-        res.json({ message, data: allPostsByUserId });
-        console.log(
-          "l'utilisateur",
-          writerPosts.first_name,
-          writerPosts.last_name,
-          'à',
-          allPostsByUserId.count,
-          'posts'
-        );
+        console.log("l'utilisateur", writerPosts.first_name, writerPosts.last_name, 'à', allPostsByUserId.count, 'posts');
+        return res
+          .json({ message, data: allPostsByUserId });
       }
     }
   } catch (error) {
