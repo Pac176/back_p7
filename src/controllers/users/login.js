@@ -24,7 +24,7 @@ exports.login = async (req, res, next) => {
       res.status(httpStatus.OK).json({
         userId: user.id,
         token: jwt.sign({ lastName: user.last_name, firstName: user.first_name }, process.env.JWT_SIGN_SECRET, {
-          expiresIn: '1h'
+          expiresIn: '48h'
         })
       });
     } catch (error) {

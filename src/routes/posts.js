@@ -9,11 +9,11 @@ const router = express.Router();
 
 // const user = require("../middleware/validUser");
 
-router.get('/', findAllPosts); /// fonction admin
-router.get('/users/:id', findAllPostsByUserId); /// fonction admin
-router.get('/:id', findOnePost); /// fonction admin/user
-router.post('/', createPost); /// fonction admin
-router.put('/:id', updatePost); /// fonction admin
-router.delete('/:id', destroyOnePost); /// fonction admin
+router.get('/',auth, findAllPosts); /// fonction admin
+router.get('/users/:id', auth, findAllPostsByUserId); /// fonction admin
+router.get('/:id', auth, findOnePost); /// fonction admin/user
+router.post('/', auth, createPost); /// fonction admin
+router.put('/:id', auth, updatePost); /// fonction admin
+router.delete('/:id', auth, destroyOnePost); /// fonction admin
 
 module.exports = router;

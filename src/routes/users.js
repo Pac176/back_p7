@@ -15,10 +15,10 @@ const router = express.Router();
 
 router.post('/signup', signup /* limiter.speedLimiter,limiter.tryLimiter,user.userSignupValidation, */);
 router.post('/login', login /* limiter.speedLimiter,limiter.tryLimiter,user.userLoginValidation, */);
-router.get('/', findAllUsers); /// fonction admin
-router.get('/:id', findOneUser); /// fonction admin/user
-router.post('/', createUser); /// fonction admin
-router.put('/:id', updateUser); /// fonction admin
-router.delete('/:id', destroyOneUser); /// fonction admin
+router.get('/', auth, findAllUsers); /// fonction admin
+router.get('/:id', auth, findOneUser); /// fonction admin/user
+router.post('/', auth, createUser); /// fonction admin
+router.put('/:id', auth, updateUser); /// fonction admin
+router.delete('/:id', auth, destroyOneUser); /// fonction admin
 
 module.exports = router;
