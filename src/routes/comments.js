@@ -2,6 +2,7 @@ const express = require('express');
 const { createComment } = require('../controllers/comments/createComment');
 const { findAllComments, findAllCommentsByUserId } = require('../controllers/comments/findAllComments');
 const { findOneComment } = require('../controllers/comments/findOneComment');
+
 const router = express.Router();
 
 // const userControllers = require("../controllers/user");
@@ -15,6 +16,6 @@ router.get('/users/:id', findAllCommentsByUserId); /// fonction admin
 router.get('/:id', findOneComment); /// fonction admin/user
 router.post('/posts/:id', createComment); /// fonction admin
 // router.put('/comments/:id', updateComment); /// fonction admin
-// router.delete('/comments/:id', destroyOneComments); /// fonction admin
+router.delete("/comments/:id", ); /// fonction admin
 
 module.exports = router;
