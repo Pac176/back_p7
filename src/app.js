@@ -23,7 +23,7 @@ app.use('/api/groupomania/posts', postRoutes);
 app.use('/api/groupomania/comments', commentRoutes);
 
 app.get('*', function (req, res) {
- return res.status(httpStatus.BAD_REQUEST)
+  return res.status(httpStatus.BAD_REQUEST)
     .json('la page demandée n\'existe pas');
 });
 

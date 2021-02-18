@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.get('/', auth, findAllComments); /// fonction admin
 router.get('/users/:id', auth, findAllCommentsByUserId); /// fonction admin
-router.get('/posts/:id', auth, findAllCommentsByPostId); /// fonction admin
+// router.get('/posts/:id', auth, findAllCommentsByPostId); /// fonction admin
 router.get('/:id', auth, findOneComment); /// fonction admin/user
 router.post('/', auth, createComment); /// fonction admin
 router.put('/:id', auth, updatecomment); /// fonction admin

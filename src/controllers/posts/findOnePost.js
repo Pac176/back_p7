@@ -7,9 +7,12 @@ exports.findOnePost = async (req, res) => {
     const findPost = await Post.findByPk(req.params.id);
     console.log(findPost);
     const message = `Le post ${req.params.id} a bien été trouvé.`;
-    res.json({ message, data: findPost });
     console.log('voici le post: ', findPost.toJSON());
+    return res.json({ message, data: findPost });
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+    return res
+      .status(httpStatus.BAD_REQUEST)
+      .json({ error: 'la requete a échouée' });
   }
 };

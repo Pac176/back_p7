@@ -9,7 +9,7 @@ const router = express.Router();
 
 // const user = require("../middleware/validUser");
 
-router.get('/',auth, findAllPosts); /// fonction admin
+router.get('/', auth, findAllPosts); /// fonction admin
 router.get('/users/:id', auth, findAllPostsByUserId); /// fonction admin
 router.get('/:id', auth, findOnePost); /// fonction admin/user
 router.post('/', auth, createPost); /// fonction admin
