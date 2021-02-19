@@ -10,8 +10,7 @@ const auth = require('../middleware/auth');
 const { userSignupValidation, userLoginValidation } = require('../middleware/validUsers');
 const router = express.Router();
 
-// const userControllers = require("../controllers/user");
-// const user = require("../middleware/validUser");
+
 // const limiter = require("../utils/limiter");
 
 router.post('/signup', userSignupValidation, signup /* limiter.speedLimiter,limiter.tryLimiter,user.userSignupValidation, */);

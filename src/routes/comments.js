@@ -9,7 +9,7 @@ const { validComments } = require('../middleware/validComments');
 
 const router = express.Router();
 
-// const user = require("../middleware/validUser");
+
 
 router.get('/', auth, findAllComments); /// fonction admin
 router.get('/users/:id', auth, findAllCommentsByUserId); /// fonction admin

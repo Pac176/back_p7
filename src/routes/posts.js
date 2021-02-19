@@ -8,7 +8,6 @@ const auth = require('../middleware/auth');
 const { validPosts } = require('../middleware/validPosts');
 const router = express.Router();
 
-// const user = require("../middleware/validUser");
 
 router.get('/', auth, findAllPosts); /// fonction admin
 router.get('/users/:id', auth, findAllPostsByUserId); /// fonction admin
