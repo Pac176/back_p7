@@ -1,7 +1,7 @@
 const DataTypes = require('sequelize').DataTypes;
 const _tblComments = require('./tblComments');
 const _tblPosts = require('./tblPosts');
-const _tblUsers = require('./tbUsers');
+const _tblUsers = require('./tblUsers');
 
 function initModels (sequelize) {
   const tblComments = _tblComments(sequelize, DataTypes);
