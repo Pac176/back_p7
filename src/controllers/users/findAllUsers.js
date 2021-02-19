@@ -8,7 +8,10 @@ exports.findAllUsers = async (req, res) => {
     if (allUsers.count === 0) {
       return res
         .status(httpStatus.BAD_REQUEST)
-        .json({ error: "il n'y a pas d'utilisateurs dans la base" });
+        .json({
+          error: "il n'y a pas d'utilisateurs dans la base"
+
+        });
     } else {
       const message = 'La liste des users a bien été récupérée.';
       console.log('il y a', allUsers.count, 'utilisateurs dans la database');
@@ -19,6 +22,9 @@ exports.findAllUsers = async (req, res) => {
     console.log(error.message);
     return res
       .status(httpStatus.BAD_REQUEST)
-      .json({ error: 'la requete a échouée' });
+      .json({
+        error: 'la requete a échouée',
+        message: error.message
+      });
   }
 };

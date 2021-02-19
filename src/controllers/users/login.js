@@ -30,11 +30,11 @@ exports.login = async (req, res, next) => {
     } catch (error) {
       console.log(error);
       return res
-        .status(httpStatus.INTERNAL_SERVER_ERROR).json({ error });
+        .status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: error.message });
     }
   } catch (error) {
     console.log(error);
     return res
-      .status(httpStatus.INTERNAL_SERVER_ERROR).json({ error });
+      .status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: error.message });
   }
 };

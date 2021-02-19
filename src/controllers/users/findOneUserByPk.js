@@ -13,6 +13,9 @@ exports.findOneUser = async (req, res) => {
     console.log(error.message);
     return res
       .status(httpStatus.BAD_REQUEST)
-      .json({ error: "la requete a échouée ou l'utilisateur n'existe pas" }); /// /separable?
+      .json({
+        error: "la requete a échouée ou l'utilisateur n'existe pas",
+        message: error.message
+      });
   }
 };

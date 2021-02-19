@@ -13,6 +13,6 @@ exports.createUser = async (req, res) => {
     console.log(error.message);
     return res
       .status(httpStatus.BAD_REQUEST)
-      .json({ error: 'la requete a échouée' });
+      .json({ error: 'la requete a échouée', message: error.message });
   }
 };

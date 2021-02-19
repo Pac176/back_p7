@@ -10,9 +10,6 @@ const auth = require('../middleware/auth');
 const { userSignupValidation, userLoginValidation } = require('../middleware/validUsers');
 const router = express.Router();
 
-
-// const limiter = require("../utils/limiter");
-
 router.post('/signup', userSignupValidation, signup /* limiter.speedLimiter,limiter.tryLimiter,user.userSignupValidation, */);
 router.post('/login', userLoginValidation, login /* limiter.speedLimiter,limiter.tryLimiter,user.userLoginValidation, */);
 router.get('/', auth, findAllUsers); /// fonction admin

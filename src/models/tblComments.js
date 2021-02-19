@@ -12,6 +12,7 @@ module.exports = function (sequelize, DataTypes) {
       comment_content: {
         type: DataTypes.TEXT,
         allowNull: false
+
       },
       post_id: {
         type: DataTypes.INTEGER.UNSIGNED,

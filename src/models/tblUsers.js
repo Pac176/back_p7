@@ -10,16 +10,28 @@ module.exports = function (sequelize, DataTypes) {
         primaryKey: true
       },
       first_name: {
-        type: DataTypes.STRING(100),
-        allowNull: false
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        validate: {
+          isAlpha: true,
+          len: [2, 50]
+        }
       },
       last_name: {
-        type: DataTypes.STRING(100),
-        allowNull: false
+        type: DataTypes.STRING(50),
+        allowNull: false,
+        validate: {
+          isAlpha: true,
+          len: [2, 50]
+        }
       },
       pseudo: {
-        type: DataTypes.STRING(100),
-        allowNull: true
+        type: DataTypes.STRING(50),
+        allowNull: true,
+        validate: {
+          isAlpha: true,
+          len: [2, 50]
+        }
       },
       password: {
         type: DataTypes.STRING(100),

@@ -19,6 +19,9 @@ exports.destroyOneComment = async (req, res) => {
     console.log(error.message);
     return res
       .status(httpStatus.BAD_REQUEST)
-      .json({ error: "le comment est deja supprimé ou n'existe pas" });
+      .json({
+        error: "le comment est deja supprimé ou n'existe pas",
+        message: error.message
+      });
   }
 };

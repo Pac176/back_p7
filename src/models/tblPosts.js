@@ -12,6 +12,7 @@ module.exports = function (sequelize, DataTypes) {
       post_content: {
         type: DataTypes.TEXT,
         allowNull: false
+
       },
       user_id: {
         type: DataTypes.SMALLINT.UNSIGNED,

@@ -16,6 +16,9 @@ exports.destroyOneUser = async (req, res) => {
     console.log(error.message);
     return res
       .status(httpStatus.BAD_REQUEST)
-      .json({ error: "l'utilisateur est deja supprimé" });
+      .json({
+        error: "l'utilisateur est deja supprimé",
+        message: error.message
+      });
   }
 };

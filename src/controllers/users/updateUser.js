@@ -23,6 +23,9 @@ exports.updateUser = async (req, res) => {
     console.log(error.message);
     return res
       .status(httpStatus.BAD_REQUEST)
-      .json({ error: "l'utilisateur n'a pas été trouvé" });
+      .json({
+        error: "l'utilisateur n'a pas été trouvé",
+        message: error.message
+      });
   }
 };
