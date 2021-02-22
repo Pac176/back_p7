@@ -19,7 +19,7 @@ exports.signup = async (req, res, next) => {
         where: { email: emailCrypt },
         defaults: newUser
       });
-      if (!signUser[1]) {
+      if (!signUser[1]) { /// /la fonction findOrCreate renvoi un booleen en [1]
         return res
           .status(httpStatus.BAD_REQUEST).json({ message: "L'utilisateur a deja été crée" });
       } else {

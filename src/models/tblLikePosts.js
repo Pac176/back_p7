@@ -1,7 +1,7 @@
 
 module.exports = function (sequelize, DataTypes) {
   return sequelize.define(
-    'tbl_posts',
+    'tbl_likePosts',
     {
       id: {
         autoIncrement: true,
@@ -9,10 +9,16 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         primaryKey: true
       },
-      post_content: {
-        type: DataTypes.TEXT,
-        allowNull: false
-
+      post_id: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        allowNull: false,
+        defaultValue: 0,
+        references: {
+          model: 'tbl_posts',
+          key: 'id'
+        },
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
       },
       user_id: {
         type: DataTypes.SMALLINT.UNSIGNED,
@@ -23,25 +29,11 @@ module.exports = function (sequelize, DataTypes) {
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
-      },
-      file_path: {
-        type: DataTypes.STRING(60),
-        allowNull: true
-      },
-      nb_likes: {
-        type: DataTypes.SMALLINT.UNSIGNED,
-        allowNull: false,
-        defaultValue: 0
-      },
-      users_liked: {
-        type: DataTypes.SMALLINT.UNSIGNED,
-        allowNull: false,
-        defaultValue: 0
       }
     },
     {
       sequelize,
-      tableName: 'tbl_posts',
+      tableName: 'tbl_likePosts',
       timestamps: true,
       underscore: true,
       indexes: [
@@ -52,7 +44,12 @@ module.exports = function (sequelize, DataTypes) {
           fields: [{ name: 'id' }]
         },
         {
-          name: 'user_id',
+          name: 'FK_tbl_likePosts_tbl_posts',
+          using: 'BTREE',
+          fields: [{ name: 'post_id' }]
+        },
+        {
+          name: 'FK_tbl_likePosts_tbl_users',
           using: 'BTREE',
           fields: [{ name: 'user_id' }]
         }
