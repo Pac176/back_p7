@@ -4,16 +4,16 @@ const Joi = require('joi');
 
 exports.userSignupValidation = async (req, res, next) => {
   const joiSchema = Joi.object({
-    first_name: Joi.string().regex(/^[a-zA-Z]+$/).required(),
-    last_name: Joi.string().required(),
-    pseudo: Joi.string().allow(""),
+    first_name: Joi.string().min(2).max(50).alphanum().required(),
+    last_name: Joi.string().min(2).max(50).alphanum().required(),
+    pseudo: Joi.string().allow(''),
     email: Joi.string()
-      .regex(/^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/)
+      .regex(/^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,6}$/)
       .required(),
     password: Joi.string()
       .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)
       .min(8)
-      .required(),
+      .required()
   });
   try {
     await joiSchema.validateAsync(req.body, {
@@ -30,7 +30,7 @@ exports.userSignupValidation = async (req, res, next) => {
       .status(EXPECTATION_FAILED)
       .json({
         message:
-          `il y a ${errorMessage.length } champ(s) invalide(s)`,
+          `il y a ${errorMessage.length} champ(s) invalide(s)`,
         detail: errorMessage
       });
   }
@@ -39,7 +39,7 @@ exports.userSignupValidation = async (req, res, next) => {
 exports.userLoginValidation = async (req, res, next) => {
   const joiSchema = Joi.object({
     email: Joi.string()
-      .regex(/^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/)
+      .regex(/^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,6}$/)
       .required(),
     password: Joi.string()
       .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)

@@ -40,9 +40,9 @@ exports.eraseLikePost = async (req, res) => {
   try {
     const postLike = await Post.findByPk(req.params.id);
     const likePostToErase = await likePost.findOne({
-      where: { post_id: req.params.id, user_id: userId },
+      where: { post_id: req.params.id, user_id: userId }
     });
-      console.log(likePostToErase)
+    console.log(likePostToErase);
     if (!likePostToErase) {
       /// /la fonction findOrCreate renvoi un booleen en [1]
       return res
