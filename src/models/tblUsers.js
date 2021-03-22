@@ -29,8 +29,8 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(50),
         allowNull: true,
         validate: {
-          isAlpha: true,
-          len: [2, 50]
+          //isAlpha: true,
+          len: [0, 50]
         }
       },
       password: {
