@@ -4,7 +4,7 @@
   "description": "Reseau social d'entreprise",
   "main": "app.js",
   "scripts": {
-    "nodemon": "nodemon server",
+    "start": "nodemon server",
     "eslint": "eslint **/*.js --fix",
     "seedAll": "npx sequelize-cli db:seed:all",
     "undoseed": "npx sequelize-cli db:seed:undo:all"
