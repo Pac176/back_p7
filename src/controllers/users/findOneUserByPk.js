@@ -5,20 +5,16 @@ const User = dbModel.tblUsers;
 
 exports.findOneUser = async (req, res) => {
   try {
-    const findUser = await User.findByPk(req.params.id);
+    const findUser = await User.findByPk(req.params.id, { raw: true });
     const message = `L'utilisateur ${findUser.first_name} ${findUser.last_name} a bien été trouvé.`;
-    console.log("voici l'utilisateur recherché: ", findUser.toJSON());
+    const result = {
+      ...findUser,
+      email: decrypt(findUser.email)
+    };
+
     return res.json({
       message,
-      data: {
-        firstName: findUser.first_name,
-        lastName: findUser.last_name,
-        pseudo: findUser.pseudo_name,
-        email: decrypt(findUser.email),
-        nbPosts: findUser.nb_posts,
-        nbComments: findUser.nb_comments,
-        createdAt: findUser.createdAt
-      }
+      data: result
     });
   } catch (error) {
     console.log(error.message);
