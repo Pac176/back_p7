@@ -6,10 +6,14 @@ const User = dbModel.tblUsers;
 exports.findAllPosts = async (req, res) => {
   try {
     const allPosts = await Post.findAndCountAll();
+    console.log(allPosts);
     if (allPosts.count === 0) {
       return res
         .status(httpStatus.BAD_REQUEST)
-        .json({ error: "il n'y a pas de posts dans la base" });
+        .json({
+          error: "il n'y a pas de posts dans la base",
+          count: allPosts.count
+        });
     } else {
       const message = 'La liste des posts a bien été récupérée.';
       console.log('il y a', allPosts.count, 'posts dans la database');

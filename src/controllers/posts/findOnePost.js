@@ -14,7 +14,7 @@ exports.findOnePost = async (req, res) => {
     return res
       .status(httpStatus.BAD_REQUEST)
       .json({
-        error: 'la requete a échouée',
+        error: "Le post n'a pas été trouvé",
         message: error.message
       });
   }

@@ -1,3 +1,4 @@
+projet developpé avec nodeJS V15.12
 
  ### Cloner le projet :
 
@@ -22,6 +23,7 @@ cp .env.dist .env
  ### lancer le back_p7
 
 ```````bash
+
 npm start
 
 ```````
