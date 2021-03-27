@@ -11,7 +11,6 @@ exports.findOneUser = async (req, res) => {
       ...findUser,
       email: decrypt(findUser.email)
     };
-
     return res.json({
       message,
       data: result
