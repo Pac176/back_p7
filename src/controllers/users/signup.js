@@ -21,7 +21,7 @@ exports.signup = async (req, res, next) => {
       });
       if (!signUser[1]) { /// /la fonction findOrCreate renvoi un booleen en [1]
         return res
-          .status(httpStatus.BAD_REQUEST).json({ message: "L'utilisateur a deja été crée" });
+          .status(httpStatus.BAD_REQUEST).json({ message: "Le mail a deja été enristré par un utilisateur" });
       } else {
         return res
           .status(httpStatus.CREATED).json({ message: 'Utilisateur créé !' });
