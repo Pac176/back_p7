@@ -17,8 +17,8 @@ module.exports = {
       {
         first_name: 'pascal',
         last_name: 'Godbille',
-        password: bcrypt.hashSync('password', 10),
-        email: crypto.encrypt('pascalemail@example.com'),
+        password: bcrypt.hashSync('Kitesurf17-', 10),
+        email: crypto.encrypt('pascal.godbille@sfr.fr'),
         createdAt: new Date(),
         updatedAt: new Date()
       },
