@@ -23,8 +23,9 @@ exports.signup = async (req, res, next) => {
         return res
           .status(httpStatus.BAD_REQUEST).json({ message: "Le mail a deja été enristré par un utilisateur" });
       } else {
+        const user = await User.findOne({ where: { email: emailCrypt } });
         return res
-          .status(httpStatus.CREATED).json({ message: 'Utilisateur créé !' });
+          .status(httpStatus.CREATED).json({ message: 'Utilisateur créé !', userId: user.id });
       };
     } catch (error) {
       console.log(error);
