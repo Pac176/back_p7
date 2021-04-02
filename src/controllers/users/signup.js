@@ -21,7 +21,7 @@ exports.signup = async (req, res, next) => {
       });
       if (!signUser[1]) { /// /la fonction findOrCreate renvoi un booleen en [1]
         return res
-          .status(httpStatus.BAD_REQUEST).json({ message: "Le mail a deja été enristré par un utilisateur" });
+          .status(httpStatus.BAD_REQUEST).json({ message: 'Le mail a deja été enristré par un utilisateur' });
       } else {
         const user = await User.findOne({ where: { email: emailCrypt } });
         return res
