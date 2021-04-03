@@ -6,7 +6,7 @@ exports.userSignupValidation = async (req, res, next) => {
   const joiSchema = Joi.object({
     first_name: Joi.string().min(2).max(50).alphanum().required(),
     last_name: Joi.string().min(2).max(50).alphanum().required(),
-    pseudo: Joi.string().allow(''),
+    pseudo: Joi.string().min(2).max(50).required(),
     email: Joi.string()
       .regex(/^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,6}$/)
       .required(),
@@ -22,6 +22,7 @@ exports.userSignupValidation = async (req, res, next) => {
     next();
   } catch (error) {
     const errorMessage = [];
+    console.log(error.message)
     console.log(error.annotate());
     error.details.forEach((element) => {
       errorMessage.push(element.message);
@@ -63,7 +64,7 @@ exports.userUpdateValidation = async (req, res, next) => {
   const joiSchema = Joi.object({
     first_name: Joi.string().min(2).max(50).alphanum(),
     last_name: Joi.string().min(2).max(50).alphanum(),
-    pseudo: Joi.string().allow(''),
+    pseudo: Joi.string().min(2).max(50),
     email: Joi.string()
       .regex(/^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,6}$/),
     password: Joi.string()
