@@ -54,7 +54,7 @@ exports.userLoginValidation = async (req, res, next) => {
   } catch (error) {
     console.log(error);
     res.status(httpStatus.BAD_REQUEST).json({
-      message: 'Données non valides'
+      message: "L'entrée ne correspond pas aux attentes"
     });
   }
 };

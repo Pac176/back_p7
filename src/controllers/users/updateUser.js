@@ -38,7 +38,7 @@ exports.updateUser = async (req, res) => {
       signUser.password === req.body.password
     ) {
       return res.status(httpStatus.OK).json({
-        message: "Aucune nouvelles données!",
+        message: 'Aucune nouvelles données!'
       });
     }
     try {
