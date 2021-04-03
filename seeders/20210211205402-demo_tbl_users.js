@@ -4,35 +4,35 @@ const crypto = require('../src/middleware/crypto');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert("tbl_users", [
+    return queryInterface.bulkInsert('tbl_users', [
       {
-        first_name: "John",
-        last_name: "Doe",
-        pseudo: "fefe",
-        password: bcrypt.hashSync("Password17-", 10),
-        email: crypto.encrypt("example@example.com"),
+        first_name: 'John',
+        last_name: 'Doe',
+        pseudo: 'fefe',
+        password: bcrypt.hashSync('Password17-', 10),
+        email: crypto.encrypt('example@example.com'),
         is_admin: 1,
         createdAt: new Date(),
-        updatedAt: new Date(),
+        updatedAt: new Date()
       },
       {
-        first_name: "pascal",
-        last_name: "Godbille",
-        pseudo: "pac176",
-        password: bcrypt.hashSync("Password17-", 10),
-        email: crypto.encrypt("pascal.godbille@sfr.fr"),
+        first_name: 'pascal',
+        last_name: 'Godbille',
+        pseudo: 'pac176',
+        password: bcrypt.hashSync('Password17-', 10),
+        email: crypto.encrypt('pascal.godbille@sfr.fr'),
         createdAt: new Date(),
-        updatedAt: new Date(),
+        updatedAt: new Date()
       },
       {
-        first_name: "Kevin",
-        last_name: "montero",
-        pseudo: "Keke",
-        password: bcrypt.hashSync("Password17-", 10),
-        email: crypto.encrypt("kevinemail@example.com"),
+        first_name: 'Kevin',
+        last_name: 'montero',
+        pseudo: 'Keke',
+        password: bcrypt.hashSync('Password17-', 10),
+        email: crypto.encrypt('kevinemail@example.com'),
         createdAt: new Date(),
-        updatedAt: new Date(),
-      },
+        updatedAt: new Date()
+      }
     ]);
   },
   down: (queryInterface, Sequelize) => {

@@ -22,7 +22,7 @@ exports.userSignupValidation = async (req, res, next) => {
     next();
   } catch (error) {
     const errorMessage = [];
-    console.log(error.message)
+    console.log(error.message);
     console.log(error.annotate());
     error.details.forEach((element) => {
       errorMessage.push(element.message);

@@ -29,7 +29,7 @@ module.exports = function (sequelize, DataTypes) {
         type: DataTypes.STRING(50),
         allowNull: false,
         validate: {
-         len: [0, 50]
+          len: [0, 50]
         }
       },
       password: {
@@ -38,7 +38,8 @@ module.exports = function (sequelize, DataTypes) {
       },
       email: {
         type: DataTypes.STRING(100),
-        allowNull: false
+        allowNull: false,
+        unique: true
       },
       image_path: {
         type: DataTypes.STRING(100),
