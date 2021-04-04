@@ -8,7 +8,6 @@ async function request (user, requestOptions, message, res) {
   return res.json({ message });
 }
 exports.updateUser = async (req, res) => {
-  // console.log(parseInt(req.params.id));
   try {
     const options = { where: { id: req.params.id } };
     const successMessage = 'Vos données ont été mises a jour!!!';
@@ -41,54 +40,24 @@ exports.updateUser = async (req, res) => {
       });
     }
   } catch (error) {
-    if (error.name === "SequelizeUniqueConstraintError") {
+    if (
+      error.name === 'SequelizeUniqueConstraintError' &&
+      error.errors[0].path === 'pseudo'
+    ) {
       return res
         .status(httpStatus.EXPECTATION_FAILED)
-        .json({ message: error });
+        .json({ message: 'Ce pseudo est deja utilisé!' });
+    } else if (
+      error.name === 'SequelizeUniqueConstraintError' &&
+      error.errors[0].path === 'email'
+    ) {
+      return res
+        .status(httpStatus.EXPECTATION_FAILED)
+        .json({ message: 'Cet email est deja utilisé!' });
     } else {
       return res
         .status(httpStatus.INTERNAL_SERVER_ERROR)
         .json({ message: error.message });
     }
   }
-
-  /*  try {
-    const emailCrypt = crypto.encrypt(req.body.email);
-     const hash = await bcrypt.hash(req.body.password, 10);
-    const updateUser = {
-      ...req.body,
-      email: emailCrypt
-      password: hash
-    };
-    try {
-      const signUser = await User.findOne({
-        where: { email: emailCrypt }
-      });
-
-      if (signUser && (parseInt(req.params.id) !== signUser.id)) {
-        return res
-          .status(httpStatus.BAD_REQUEST)
-          .json({ message: 'Un utilisateur a deja cet email' });
-      } else {
-        const oldUser = await User.findByPk(req.params.id);
-        await User.update(updateUser, { where: { id: req.params.id } });
-        const message = 'Vos données ont été mises a jour!!!';
-        // console.log(oldUser.toJSON());
-        return res.json({ message, data: updateUser });
-      }
-    } catch (error) {
-      console.log(error);
-      return res
-        .status(httpStatus.EXPECTATION_FAILED)
-        .json({message: "Vérifiez les champs non valides!!"});
-    }
-  } catch (error) {
-    console.log(error);
-    return res
-      .status(httpStatus.BAD_REQUEST)
-      .json({
-        error: "l'utilisateur n'a pas été trouvé",
-        message: error.message
-      });
-  } */
 };

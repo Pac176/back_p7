@@ -9,7 +9,7 @@ exports.signup = async (req, res, next) => {
     const emailCrypt = crypto.encrypt(req.body.email);
     const hash = await bcrypt.hash(req.body.password, 10);
     try {
-      const signUser = await User.create({
+      await User.create({
         ...req.body,
         email: emailCrypt,
         password: hash
@@ -19,13 +19,24 @@ exports.signup = async (req, res, next) => {
         .status(httpStatus.CREATED)
         .json({ message: 'Utilisateur créé !', userId: user.id });
     } catch (error) {
-      if (error.name === 'SequelizeUniqueConstraintError') {
+      if (
+        error.name === 'SequelizeUniqueConstraintError' &&
+        error.errors[0].path === 'pseudo'
+      ) {
         return res
           .status(httpStatus.EXPECTATION_FAILED)
-          .json({ message: 'Le mail a deja été enregistré par un utilisateur' });
+          .json({ message: 'Ce pseudo est deja utilisé!' });
+      } else if (
+        error.name === 'SequelizeUniqueConstraintError' &&
+        error.errors[0].path === 'email'
+      ) {
+        return res
+          .status(httpStatus.EXPECTATION_FAILED)
+          .json({ message: 'Cet email est deja utilisé!' });
       } else {
         return res
-          .status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: error.message });
+          .status(httpStatus.INTERNAL_SERVER_ERROR)
+          .json({ message: error.message });
       }
     }
   } catch (error) {

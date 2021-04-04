@@ -28,6 +28,7 @@ module.exports = function (sequelize, DataTypes) {
       pseudo: {
         type: DataTypes.STRING(50),
         allowNull: false,
+        unique: true,
         validate: {
           len: [0, 50]
         }
