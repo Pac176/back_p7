@@ -7,49 +7,49 @@ async function request (user, requestOptions, message, res) {
   await User.update(user, requestOptions);
   return res.json({ message });
 }
-function errorRequest (error, res) {
-  console.log(error);
-  return res
-    .status(httpStatus.EXPECTATION_FAILED)
-    .json({ message: 'La mise a jour a échouée' });
-}
 exports.updateUser = async (req, res) => {
   // console.log(parseInt(req.params.id));
-  const options = { where: { id: req.params.id } };
-  const successMessage = 'Vos données ont été mises a jour!!!';
-  const signUser = await User.findOne(options);
-  signUser.email = crypto.decrypt(signUser.email);
-
-  if (signUser) {
-    const emailCrypt = crypto.encrypt(req.body.email);
-    const passwordHash = await bcrypt.hash(req.body.password, 10);
-    const updateUser = {
-      ...req.body,
-      email: emailCrypt,
-      password: passwordHash
-
-    };
-
-    if (
-      signUser.email === req.body.email &&
-      signUser.first_name === req.body.first_name &&
-      signUser.last_name === req.body.last_name &&
-      signUser.pseudo === req.body.pseudo &&
-      signUser.password === req.body.password
-    ) {
-      return res.status(httpStatus.OK).json({
-        message: 'Aucune nouvelles données!'
+  try {
+    const options = { where: { id: req.params.id } };
+    const successMessage = 'Vos données ont été mises a jour!!!';
+    const signUser = await User.findOne(options);
+    signUser.email = crypto.decrypt(signUser.email);
+    if (signUser) {
+      if (
+        signUser.email === req.body.email &&
+        signUser.first_name === req.body.first_name &&
+        signUser.last_name === req.body.last_name &&
+        signUser.pseudo === req.body.pseudo &&
+        signUser.password === req.body.password
+      ) {
+        return res.status(httpStatus.OK).json({
+          message: 'Aucune nouvelles données!'
+        });
+      } else {
+        const emailCrypt = crypto.encrypt(req.body.email);
+        const passwordHash = await bcrypt.hash(req.body.password, 10);
+        const updateUser = {
+          ...req.body,
+          email: emailCrypt,
+          password: passwordHash
+        };
+        await request(updateUser, options, successMessage, res);
+      }
+    } else {
+      return res.status(httpStatus.BAD_REQUEST).json({
+        messag: "l'utilisateur n'a pas été trouvé"
       });
     }
-    try {
-      request(updateUser, options, successMessage, res);
-    } catch (error) {
-      errorRequest(error, res);
+  } catch (error) {
+    if (error.name === "SequelizeUniqueConstraintError") {
+      return res
+        .status(httpStatus.EXPECTATION_FAILED)
+        .json({ message: error });
+    } else {
+      return res
+        .status(httpStatus.INTERNAL_SERVER_ERROR)
+        .json({ message: error.message });
     }
-  } else {
-    return res.status(httpStatus.BAD_REQUEST).json({
-      error: "l'utilisateur n'a pas été trouvé"
-    });
   }
 
   /*  try {
