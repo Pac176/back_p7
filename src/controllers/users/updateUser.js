@@ -24,7 +24,21 @@ exports.updateUser = async (req, res) => {
         return res.status(httpStatus.OK).json({
           message: 'Aucune nouvelles données!'
         });
-      } else {
+      } else if (
+        signUser.email !== req.body.email ||
+        signUser.first_name !== req.body.first_name ||
+        signUser.last_name !== req.body.last_name ||
+        signUser.pseudo !== req.body.pseudo &&
+        signUser.password === req.body.password 
+      ) {
+        const emailCrypt = crypto.encrypt(req.body.email);
+        const updateUser = {
+          ...req.body,
+          email: emailCrypt
+        };
+        await request(updateUser, options, successMessage, res);
+
+      } else if (signUser.password !== req.body.password) {
         const emailCrypt = crypto.encrypt(req.body.email);
         const passwordHash = await bcrypt.hash(req.body.password, 10);
         const updateUser = {
