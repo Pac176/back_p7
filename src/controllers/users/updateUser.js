@@ -39,6 +39,7 @@ exports.updateUser = async (req, res) => {
         await request(updateUser, options, successMessage, res);
 
       } else if (signUser.password !== req.body.password) {
+        console.log('ok')
         const emailCrypt = crypto.encrypt(req.body.email);
         const passwordHash = await bcrypt.hash(req.body.password, 10);
         const updateUser = {
