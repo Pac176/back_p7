@@ -5,7 +5,13 @@ const User = dbModel.tblUsers;
 
 exports.findAllPosts = async (req, res) => {
   try {
-    const allPosts = await Post.findAndCountAll();
+    const allPosts = await Post.findAndCountAll({
+      order: [['id', 'DESC']],
+      include: [{
+        model: User,
+        as: 'user'
+      }]
+    });
     if (allPosts.count === 0) {
       return res
         .status(httpStatus.BAD_REQUEST)
