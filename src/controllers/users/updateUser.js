@@ -29,7 +29,7 @@ exports.updateUser = async (req, res) => {
         signUser.first_name !== req.body.first_name ||
         signUser.last_name !== req.body.last_name ||
         signUser.pseudo !== req.body.pseudo &&
-        signUser.password === req.body.password 
+        signUser.password === req.body.password
       ) {
         const emailCrypt = crypto.encrypt(req.body.email);
         const updateUser = {
@@ -37,9 +37,8 @@ exports.updateUser = async (req, res) => {
           email: emailCrypt
         };
         await request(updateUser, options, successMessage, res);
-
       } else if (signUser.password !== req.body.password) {
-        console.log('ok')
+        console.log('ok');
         const emailCrypt = crypto.encrypt(req.body.email);
         const passwordHash = await bcrypt.hash(req.body.password, 10);
         const updateUser = {

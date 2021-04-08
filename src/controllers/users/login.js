@@ -51,3 +51,29 @@ exports.login = async (req, res, next) => {
       .status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: error.message });
   }
 };
+exports.verifyPwd = async (req, res, next) => {
+  try {
+    const emailCrypt = crypto.encrypt(req.body.email);
+    const user = await User.findOne({ where: { email: emailCrypt } });
+    if (!user) {
+      return res
+        .status(httpStatus.UNAUTHORIZED)
+        .json({ message: 'Utilisateur non trouvé !' });
+    }
+    const valid = await bcrypt.compare(req.body.password, user.password);
+
+    if (!valid) {
+      return res
+        .status(httpStatus.UNAUTHORIZED)
+        .json({ message: 'Mot de passe incorrect !' });
+    } else {
+      res.status(httpStatus.OK).json({
+        message: 'le mot de passe est bon!'
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: error.message });
+  }
+};

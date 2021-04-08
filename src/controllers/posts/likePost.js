@@ -5,10 +5,10 @@ const likePost = dbModel.tblLikePosts;
 const Post = dbModel.tblPosts;
 
 exports.addLikePost = async (req, res) => {
-  const token = req.headers.authorization.split(' ')[1];
-  const decodedToken = jwt.verify(token, process.env.JWT_SIGN_SECRET);
-  const userId = decodedToken.userId;
   try {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, process.env.JWT_SIGN_SECRET);
+    const userId = decodedToken.userId;
     const likePostToRecord = await likePost.findOrCreate({
       where: { post_id: req.params.id, user_id: userId },
       defaults: { post_id: req.params.id, user_id: userId }
