@@ -44,7 +44,14 @@ exports.findAllPostsByUserId = async (req, res) => {
         .status(httpStatus.OK)
         .json({ message: "l'utilisateur n'existe pas" });
     } else {
-      const allPostsByUserId = await Post.findAndCountAll({ where: { user_id: req.params.id } });
+      const allPostsByUserId = await Post.findAndCountAll({
+        order: [['id', 'DESC']],
+        where: { user_id: req.params.id },
+        include: [{
+          model: User,
+          as: 'user'
+      }] 
+    });
       if (allPostsByUserId.count === 0) {
         return res
           .status(httpStatus.OK)

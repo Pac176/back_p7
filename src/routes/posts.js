@@ -10,7 +10,7 @@ const { addLikePost, eraseLikePost } = require('../controllers/posts/likePost');
 const router = express.Router();
 
 router.get('/', auth, findAllPosts); /// fonction admin
-router.get('/users/:id', /*  auth, */ findAllPostsByUserId); /// fonction admin
+router.get('/users/:id', auth, findAllPostsByUserId); /// fonction admin
 router.get('/:id', auth, findOnePost); /// fonction admin/user
 router.post('/', auth, createPost); /// fonction admin
 router.post('/like/:id', auth, addLikePost); /// fonction admin
