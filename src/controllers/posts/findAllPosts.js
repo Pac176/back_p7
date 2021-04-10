@@ -6,9 +6,16 @@ const User = dbModel.tblUsers;
 exports.findAllPosts = async (req, res) => {
   try {
     const allPosts = await Post.findAndCountAll({
+      // raw: true,
+      attributes: {
+        exclude: ['file_path']
+      },
       order: [['id', 'DESC']],
       include: [{
         model: User,
+        attributes: {
+          exclude: ['password', 'email', 'createdAt', 'updatedAt', 'image_path', 'nb_connections', 'nb_comments', 'is_admin']
+        },
         as: 'user'
       }]
     });
@@ -45,13 +52,28 @@ exports.findAllPostsByUserId = async (req, res) => {
         .json({ message: "l'utilisateur n'existe pas" });
     } else {
       const allPostsByUserId = await Post.findAndCountAll({
+        // raw: true,
         order: [['id', 'DESC']],
         where: { user_id: req.params.id },
-        include: [{
-          model: User,
-          as: 'user'
-      }] 
-    });
+        include: [
+          {
+            model: User,
+            attributes: {
+              exclude: [
+                'password',
+                'email',
+                'createdAt',
+                'updatedAt',
+                'image_path',
+                'nb_connections',
+                'nb_comments',
+                'is_admin'
+              ]
+            },
+            as: 'user'
+          }
+        ]
+      });
       if (allPostsByUserId.count === 0) {
         return res
           .status(httpStatus.OK)

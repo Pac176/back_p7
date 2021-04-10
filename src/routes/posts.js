@@ -3,7 +3,7 @@ const { destroyOnePost } = require('../controllers/posts/destroyPost');
 const { findAllPosts, findAllPostsByUserId } = require('../controllers/posts/findAllPosts');
 const { findOnePost } = require('../controllers/posts/findOnePost');
 const { updatePost } = require('../controllers/posts/updatePost');
-const { createPost } = require('../controllers/posts/createPost');
+const { createPost, updateNbPosts } = require('../controllers/posts/createPost');
 const auth = require('../middleware/auth');
 const { addLikePost, eraseLikePost } = require('../controllers/posts/likePost');
 

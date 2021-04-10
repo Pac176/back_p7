@@ -24,6 +24,8 @@ exports.login = async (req, res, next) => {
           .status(httpStatus.UNAUTHORIZED)
           .json({ message: 'Mot de passe incorrect !' });
       } else {
+        user.nb_connections += 1;
+        await user.save();
         res.status(httpStatus.OK).json({
           userId: user.id,
           token: jwt.sign(
@@ -39,6 +41,7 @@ exports.login = async (req, res, next) => {
           ),
           message: 'le mot de passe est bon!'
         });
+        next();
       }
     } catch (error) {
       console.log(error);
