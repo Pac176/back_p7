@@ -2,7 +2,7 @@ const httpStatus = require('http-status');
 const { dbModel } = require('../../db/sequelize');
 const Post = dbModel.tblPosts;
 const User = dbModel.tblUsers;
-
+const Comment = dbModel.tblComments;
 exports.findAllPosts = async (req, res) => {
   try {
     const allPosts = await Post.findAndCountAll({
@@ -11,13 +11,46 @@ exports.findAllPosts = async (req, res) => {
         exclude: ['file_path']
       },
       order: [['id', 'DESC']],
-      include: [{
-        model: User,
-        attributes: {
-          exclude: ['password', 'email', 'createdAt', 'updatedAt', 'image_path', 'nb_connections', 'nb_comments', 'is_admin']
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              'password',
+              'email',
+              'createdAt',
+              'updatedAt',
+              'image_path',
+              'nb_connections',
+              'nb_comments',
+              'is_admin'
+            ]
+          },
+          as: 'user'
         },
-        as: 'user'
-      }]
+        {
+          model: Comment,
+          include: [
+            {
+              model: User,
+              attributes: {
+                exclude: [
+                  'password',
+                  'email',
+                  'createdAt',
+                  'updatedAt',
+                  'image_path',
+                  'nb_connections',
+                  'nb_comments',
+                  'is_admin'
+                ]
+              },
+              as: 'user'
+            }
+          ],
+          as: 'tblComments'
+        }
+      ]
     });
     if (allPosts.count === 0) {
       return res

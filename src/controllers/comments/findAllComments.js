@@ -88,7 +88,45 @@ exports.findAllCommentsByPostsId = async (req, res) => {
   try {
     const postComment = await Post.findByPk(req.params.id);
     const allCommentsByPostId = await Comment.findAndCountAll({
-      where: { post_id: req.params.id }
+      // raw: true,
+      where: { post_id: req.params.id },
+      attributes: {
+        exclude: ['file_path', 'post_id', 'user_id']
+      },
+      order: [['id', 'DESC']],
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              'password',
+              'email',
+              'createdAt',
+              'updatedAt',
+              'image_path',
+              'nb_connections',
+              'nb_comments',
+              'nb_posts',
+              'is_admin'
+            ]
+          },
+          as: 'user'
+        },
+        {
+          model: Post,
+          attributes: {
+            exclude: [
+              'post_content',
+              'user_id',
+              'file_path',
+              'createdAt',
+              'updatedAt'
+
+            ]
+          },
+          as: 'post'
+        }
+      ]
     });
     const message = `La liste des comments de ${postComment.id} a bien été récupérée.`;
     console.log(
