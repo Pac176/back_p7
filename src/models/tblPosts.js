@@ -12,7 +12,6 @@ module.exports = function (sequelize, DataTypes) {
       post_content: {
         type: DataTypes.TEXT,
         allowNull: false
-
       },
       user_id: {
         type: DataTypes.SMALLINT.UNSIGNED,
@@ -34,6 +33,11 @@ module.exports = function (sequelize, DataTypes) {
         defaultValue: 0
       },
       users_liked: {
+        type: DataTypes.SMALLINT.UNSIGNED,
+        allowNull: false,
+        defaultValue: 0
+      },
+      nb_comments: {
         type: DataTypes.SMALLINT.UNSIGNED,
         allowNull: false,
         defaultValue: 0

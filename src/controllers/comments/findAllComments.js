@@ -6,7 +6,46 @@ const Post = dbModel.tblPosts;
 
 exports.findAllComments = async (req, res) => {
   try {
-    const allComments = await Comment.findAndCountAll();
+    const allComments = await Comment.findAndCountAll({
+      // raw: true,
+      attributes: {
+        exclude: ['file_path', 'post_id', 'user_id']
+      },
+      order: [['id', 'DESC']],
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              'password',
+              'email',
+              'createdAt',
+              'updatedAt',
+              'image_path',
+              'nb_connections',
+              'nb_comments',
+              'nb_posts',
+              'is_admin'
+            ]
+          },
+          as: 'user'
+        },
+        {
+          model: Post,
+          attributes: {
+            exclude: [
+              'post_content',
+              'user_id',
+              'file_path',
+              'createdAt',
+              'updatedAt'
+
+            ]
+          },
+          as: 'post'
+        }
+      ]
+    });
     const message = 'La liste des comments a bien été récupérée.';
     res.json({ message, data: allComments });
     console.log('il y a', allComments.count, 'utilisateurs dans la database');
