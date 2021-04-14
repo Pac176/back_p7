@@ -1,10 +1,34 @@
 const httpStatus = require('http-status');
 const { dbModel } = require('../../db/sequelize');
 const Post = dbModel.tblPosts;
+const User = dbModel.tblUsers;
 
 exports.findOnePost = async (req, res) => {
   try {
-    const findPost = await Post.findByPk(req.params.id);
+    const findPost = await Post.findOne({
+      // raw: true,
+      order: [['id', 'DESC']],
+      where: { id: req.params.id },
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: [
+              'id',
+              'password',
+              'email',
+              'createdAt',
+              'updatedAt',
+              'image_path',
+              'nb_connections',
+              'nb_comments',
+              'is_admin'
+            ]
+          },
+          as: 'user'
+        }
+      ]
+    });
     console.log(findPost);
     const message = `Le post ${req.params.id} a bien été trouvé.`;
     console.log('voici le post: ', findPost.toJSON());
