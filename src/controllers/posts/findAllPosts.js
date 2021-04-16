@@ -54,9 +54,9 @@ exports.findAllPosts = async (req, res) => {
     });
     if (allPosts.count === 0) {
       return res
-        .status(httpStatus.BAD_REQUEST)
+        .status(httpStatus.OK)
         .json({
-          error: "il n'y a pas de posts dans la base",
+          message: 'Soyez le premier à écrire un post!!',
           count: allPosts.count
         });
     } else {
