@@ -5,7 +5,10 @@ const User = dbModel.tblUsers;
 
 exports.findOneUser = async (req, res) => {
   try {
-    const findUser = await User.findByPk(req.params.id, { raw: true });
+    const findUser = await User.findOne({
+      where: { id: req.params.id },
+      raw: true
+    });
     const message = `L'utilisateur ${findUser.first_name} ${findUser.last_name} a bien été trouvé.`;
     const result = {
       ...findUser,

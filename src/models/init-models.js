@@ -12,8 +12,10 @@ function initModels (sequelize) {
 
   tblComments.belongsTo(tblPosts, { as: 'post', foreignKey: 'post_id' });
   tblPosts.hasMany(tblComments, { as: 'tblComments', foreignKey: 'post_id' });
+  tblPosts.hasMany(tblLikePosts, { as: 'like', foreignKey: 'post_id' });
   tblComments.belongsTo(tblUsers, { as: 'user', foreignKey: 'user_id' });
   tblUsers.hasMany(tblComments, { as: 'tblComments', foreignKey: 'user_id' });
+  tblUsers.hasMany(tblLikePosts, { as: 'like', foreignKey: 'user_id' });
   tblLikePosts.belongsTo(tblPosts, { as: 'post', foreignKey: 'post_id' });
   tblPosts.belongsTo(tblUsers, { as: 'user', foreignKey: 'user_id' });
   tblLikePosts.belongsTo(tblUsers, { as: 'user', foreignKey: 'user_id' });

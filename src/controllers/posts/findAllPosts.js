@@ -2,6 +2,7 @@ const httpStatus = require('http-status');
 const { dbModel } = require('../../db/sequelize');
 const Post = dbModel.tblPosts;
 const User = dbModel.tblUsers;
+const LikePosts = dbModel.tblLikePosts;
 const Comment = dbModel.tblComments;
 exports.findAllPosts = async (req, res) => {
   try {
@@ -49,6 +50,18 @@ exports.findAllPosts = async (req, res) => {
             }
           ],
           as: 'tblComments'
+        },
+        {
+          model: LikePosts,
+          attributes: {
+            exclude: [
+              'id',
+              'post_id',
+              'createdAt',
+              'updatedAt'
+            ]
+          },
+          as: 'like'
         }
       ]
     });

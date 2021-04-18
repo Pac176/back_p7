@@ -1,5 +1,6 @@
 const httpStatus = require('http-status');
 const { dbModel } = require('../../db/sequelize');
+const LikePosts = dbModel.tblLikePosts;
 const Post = dbModel.tblPosts;
 const User = dbModel.tblUsers;
 
@@ -12,20 +13,21 @@ exports.findOnePost = async (req, res) => {
       include: [
         {
           model: User,
+
+          as: 'user'
+        },
+        {
+          model: LikePosts,
           attributes: {
             exclude: [
               'id',
-              'password',
-              'email',
+              'post_id',
               'createdAt',
-              'updatedAt',
-              'image_path',
-              'nb_connections',
-              'nb_comments',
-              'is_admin'
-            ]
+              'updatedAt']
+
           },
-          as: 'user'
+
+          as: 'like'
         }
       ]
     });

@@ -32,11 +32,11 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         defaultValue: 0
       },
-      users_liked: {
+      /*  users_liked: {
         type: DataTypes.SMALLINT.UNSIGNED,
         allowNull: false,
         defaultValue: 0
-      },
+      }, */
       nb_comments: {
         type: DataTypes.SMALLINT.UNSIGNED,
         allowNull: false,
