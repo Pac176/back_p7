@@ -53,13 +53,28 @@ exports.findAllPosts = async (req, res) => {
         },
         {
           model: LikePosts,
+          include: [
+            {
+              model: User,
+              attributes: {
+                exclude: [
+                  'last_name',
+                  'first_name',
+                  'password',
+                  'email',
+                  'createdAt',
+                  'updatedAt',
+                  'image_path',
+                  'nb_connections',
+                  'nb_comments',
+                  'is_admin'
+                ]
+              },
+              as: 'user'
+            }
+          ],
           attributes: {
-            exclude: [
-              'id',
-              'post_id',
-              'createdAt',
-              'updatedAt'
-            ]
+            exclude: ['user_id', 'post_id', 'createdAt', 'updatedAt']
           },
           as: 'like'
         }
