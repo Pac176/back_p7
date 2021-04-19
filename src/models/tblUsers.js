@@ -51,11 +51,6 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         defaultValue: 0
       },
-      nb_comments: {
-        type: DataTypes.SMALLINT.UNSIGNED,
-        allowNull: false,
-        defaultValue: 0
-      },
       nb_connections: {
         type: DataTypes.INTEGER.UNSIGNED,
         allowNull: false,
