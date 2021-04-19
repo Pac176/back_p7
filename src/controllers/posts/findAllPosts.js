@@ -114,8 +114,11 @@ exports.findAllPostsByUserId = async (req, res) => {
     } else {
       const allPostsByUserId = await Post.findAndCountAll({
         // raw: true,
-        order: [['id', 'DESC']],
         where: { user_id: req.params.id },
+        attributes: {
+          exclude: ['file_path']
+        },
+        order: [['id', 'DESC']],
         include: [
           {
             model: User,
@@ -132,6 +135,55 @@ exports.findAllPostsByUserId = async (req, res) => {
               ]
             },
             as: 'user'
+          },
+          {
+            model: Comment,
+            include: [
+              {
+                model: User,
+                attributes: {
+                  exclude: [
+                    'password',
+                    'email',
+                    'createdAt',
+                    'updatedAt',
+                    'image_path',
+                    'nb_connections',
+                    'nb_comments',
+                    'is_admin'
+                  ]
+                },
+                as: 'user'
+              }
+            ],
+            as: 'tblComments'
+          },
+          {
+            model: LikePosts,
+            include: [
+              {
+                model: User,
+                attributes: {
+                  exclude: [
+                    'last_name',
+                    'first_name',
+                    'password',
+                    'email',
+                    'createdAt',
+                    'updatedAt',
+                    'image_path',
+                    'nb_connections',
+                    'nb_comments',
+                    'is_admin'
+                  ]
+                },
+                as: 'user'
+              }
+            ],
+            attributes: {
+              exclude: ['user_id', 'post_id', 'createdAt', 'updatedAt']
+            },
+            as: 'like'
           }
         ]
       });
