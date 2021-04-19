@@ -6,7 +6,7 @@ const LikePosts = dbModel.tblLikePosts;
 const Comment = dbModel.tblComments;
 exports.findAllPosts = async (req, res) => {
   try {
-    const allPosts = await Post.findAndCountAll({
+    const allPosts = await Post.findAll({
       // raw: true,
       attributes: {
         exclude: ['file_path']
@@ -80,18 +80,17 @@ exports.findAllPosts = async (req, res) => {
         }
       ]
     });
-    if (allPosts.count === 0) {
+    if (allPosts.length === 0) {
       return res
         .status(httpStatus.OK)
         .json({
           message: 'Soyez le premier à écrire un post!!',
-          count: allPosts.count
+          count: allPosts.length
         });
     } else {
       const message = 'La liste des posts a bien été récupérée.';
-      console.log('il y a', allPosts.count, 'posts dans la database');
-      return res
-        .json({ message, data: allPosts });
+      console.log('il y a', allPosts.length, 'posts dans la database');
+      return res.json({ message, data: allPosts, count: allPosts.length });
     }
   } catch (error) {
     console.log(error.message);
@@ -112,7 +111,7 @@ exports.findAllPostsByUserId = async (req, res) => {
         .status(httpStatus.OK)
         .json({ message: "l'utilisateur n'existe pas" });
     } else {
-      const allPostsByUserId = await Post.findAndCountAll({
+      const allPostsByUserId = await Post.findAll({
         // raw: true,
         where: { user_id: req.params.id },
         attributes: {
@@ -126,8 +125,6 @@ exports.findAllPostsByUserId = async (req, res) => {
               exclude: [
                 'password',
                 'email',
-                'createdAt',
-                'updatedAt',
                 'image_path',
                 'nb_connections',
                 'nb_comments',
@@ -187,17 +184,18 @@ exports.findAllPostsByUserId = async (req, res) => {
           }
         ]
       });
-      if (allPostsByUserId.count === 0) {
+      if (allPostsByUserId.length === 0) {
         return res
           .status(httpStatus.OK)
           .json({
-            message: `l'utilisateur ${writerPosts.first_name} ${writerPosts.last_name} n'a écrit aucun post`
+            message: `l'utilisateur ${writerPosts.first_name} ${writerPosts.last_name} n'a écrit aucun post`,
+            count: allPostsByUserId.length
           });
       } else {
         const message = `La liste des posts de ${writerPosts.first_name} ${writerPosts.last_name} a bien été récupérée.`;
-        console.log("l'utilisateur", writerPosts.first_name, writerPosts.last_name, 'à', allPostsByUserId.count, 'posts');
+        console.log("l'utilisateur", writerPosts.first_name, writerPosts.last_name, 'à', allPostsByUserId.length, 'posts');
         return res
-          .json({ message, data: allPostsByUserId });
+          .json({ message, data: allPostsByUserId, count: allPostsByUserId.length });
       }
     }
   } catch (error) {
