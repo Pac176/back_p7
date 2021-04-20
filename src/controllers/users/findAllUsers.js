@@ -4,11 +4,11 @@ const User = dbModel.tblUsers;
 
 exports.findAllUsers = async (req, res) => {
   try {
-    const allUsers = await User.findAndCountAll({
-      attributes: ['id', 'first_name', 'last_name', 'pseudo']
+    const allUsers = await User.findAll({
+      attributes: ['id', 'first_name', 'last_name', 'pseudo', 'nb_posts', 'nb_connections', 'is_admin']
 
     });
-    if (allUsers.count === 0) {
+    if (allUsers.length === 0) {
       return res
         .status(httpStatus.BAD_REQUEST)
         .json({

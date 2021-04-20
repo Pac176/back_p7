@@ -14,6 +14,7 @@ exports.userSignupValidation = async (req, res, next) => {
       .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)
       .min(8)
       .required()
+    
   });
   try {
     await joiSchema.validateAsync(req.body, {
@@ -65,12 +66,11 @@ exports.userUpdateValidation = async (req, res, next) => {
     first_name: Joi.string().min(2).max(50).alphanum(),
     last_name: Joi.string().min(2).max(50).alphanum(),
     pseudo: Joi.string().min(2).max(50),
-    email: Joi.string()
-      .regex(/^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,6}$/),
+    email: Joi.string().regex(/^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,6}$/),
     password: Joi.string()
       .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)
-      .min(8)
-
+      .min(8),
+    is_admin: Joi.boolean()
   });
   try {
     await joiSchema.validateAsync(req.body, {

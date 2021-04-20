@@ -12,7 +12,7 @@ module.exports = {
         pseudo: 'admin',
         password: bcrypt.hashSync('Admin17-', 10),
         email: crypto.encrypt('admin@admin.com'),
-        is_admin: 1,
+        is_admin: true,
         nb_posts: 2,
         createdAt: new Date(),
         updatedAt: new Date()

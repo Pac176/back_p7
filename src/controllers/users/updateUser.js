@@ -19,17 +19,26 @@ exports.updateUser = async (req, res) => {
         signUser.first_name === req.body.first_name &&
         signUser.last_name === req.body.last_name &&
         signUser.pseudo === req.body.pseudo &&
-        signUser.password === req.body.password
-      ) {
+        signUser.password === req.body.password &&
+        signUser.is_admin === req.body.is_admin
+      ) { console.log(signUser.is_admin);
         return res.status(httpStatus.OK).json({
           message: 'Aucune nouvelles données!'
         });
       } else if (
+        signUser.is_admin !== req.body.is_admin
+      ) {
+        const emailCrypt = crypto.encrypt(req.body.email);
+        const updateUser = {
+          ...req.body,
+          email: emailCrypt
+        };
+        await request(updateUser, options, "L'utilisateur a changé de statut", res);
+      } else if (
         signUser.email !== req.body.email ||
         signUser.first_name !== req.body.first_name ||
         signUser.last_name !== req.body.last_name ||
-        signUser.pseudo !== req.body.pseudo &&
-        signUser.password === req.body.password
+        signUser.pseudo !== req.body.pseudo
       ) {
         const emailCrypt = crypto.encrypt(req.body.email);
         const updateUser = {
