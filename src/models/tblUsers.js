@@ -57,7 +57,7 @@ module.exports = function (sequelize, DataTypes) {
         defaultValue: 0
       },
       is_admin: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.TINYINT.UNSIGNED,
         allowNull: false,
         defaultValue: false
       }

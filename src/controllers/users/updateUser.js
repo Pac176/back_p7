@@ -14,18 +14,20 @@ exports.updateUser = async (req, res) => {
     const signUser = await User.findOne(options);
     signUser.email = crypto.decrypt(signUser.email);
     if (signUser) {
-      if (
+      if ( /// aucun changements
         signUser.email === req.body.email &&
         signUser.first_name === req.body.first_name &&
         signUser.last_name === req.body.last_name &&
         signUser.pseudo === req.body.pseudo &&
         signUser.password === req.body.password &&
         signUser.is_admin === req.body.is_admin
-      ) { console.log(signUser.is_admin);
+
+      ) {
+        console.log(signUser.is_admin);
         return res.status(httpStatus.OK).json({
           message: 'Aucune nouvelles données!'
         });
-      } else if (
+      } else if ( /// changer le statut
         signUser.is_admin !== req.body.is_admin
       ) {
         const emailCrypt = crypto.encrypt(req.body.email);
