@@ -6,7 +6,7 @@ const Post = dbModel.tblPosts;
 
 exports.findAllComments = async (req, res) => {
   try {
-    const allComments = await Comment.findAndCountAll({
+    const allComments = await Comment.findAll({
       // raw: true,
       attributes: {
         exclude: ['file_path', 'post_id', 'user_id']
@@ -64,7 +64,7 @@ exports.findAllCommentsByUserId = async (req, res) => {
   console.log(req.params);
   try {
     const writerComments = await User.findByPk(req.params.id);
-    const allCommentsByUser = await Comment.findAndCountAll({
+    const allCommentsByUser = await Comment.findAll({
       where: { user_id: req.params.id }
     });
     const message = `La liste des comments de ${writerComments.first_name} ${writerComments.last_name} a bien été récupérée.`;
@@ -87,7 +87,7 @@ exports.findAllCommentsByPostsId = async (req, res) => {
   console.log(req.params);
   try {
     const postComment = await Post.findByPk(req.params.id);
-    const allCommentsByPostId = await Comment.findAndCountAll({
+    const allCommentsByPostId = await Comment.findAll({
       // raw: true,
       where: { post_id: req.params.id },
       attributes: {
