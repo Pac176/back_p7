@@ -28,13 +28,10 @@ exports.userSignupValidation = async (req, res, next) => {
     error.details.forEach((element) => {
       errorMessage.push(element.message);
     });
-    res
-      .status(EXPECTATION_FAILED)
-      .json({
-        message:
-          `il y a ${errorMessage.length} champ(s) invalide(s)`,
-        detail: errorMessage
-      });
+    res.status(EXPECTATION_FAILED).json({
+      message: 'Certains champ(s) sont invalide(s) ou manquants, verifiez vos informations!',
+      detail: errorMessage,
+    });
   }
 };
 
