@@ -30,7 +30,7 @@ exports.userSignupValidation = async (req, res, next) => {
     });
     res.status(EXPECTATION_FAILED).json({
       message: 'Certains champ(s) sont invalide(s) ou manquants, verifiez vos informations!',
-      detail: errorMessage,
+      detail: errorMessage
     });
   }
 };
