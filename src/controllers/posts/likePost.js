@@ -57,7 +57,7 @@ exports.addLikePost = async (req, res) => {
         where: { post_id: req.body.like.postId, user_id: req.body.like.userId }
       });
       console.log(likePostToDestroy);
-      await postLike.decrement('nb_likes');
+      // await postLike.decrement('nb_likes');
       return res
         .status(httpStatus.OK)
         .json({
@@ -65,7 +65,7 @@ exports.addLikePost = async (req, res) => {
           likePost: likePostToRecord
         });
     } else {
-      postLike.increment('nb_likes');
+      // postLike.increment('nb_likes');
       return res
         .status(httpStatus.CREATED)
         .json({ message: 'Avis pris en compte !', likePost: likePostToRecord });
