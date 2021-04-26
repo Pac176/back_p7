@@ -6,7 +6,7 @@ const User = dbModel.tblUsers;
 
 exports.addLikePost = async (req, res) => {
   try {
-    const postLike = await Post.findOne({ id: req.body.like.postId });
+    await Post.findOne({ id: req.body.like.postId });
     const likePostToRecord = await LikePost.findOrCreate({
       // raw: true,
       where: { post_id: req.body.like.postId, user_id: req.body.like.userId },
