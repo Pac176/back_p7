@@ -22,16 +22,11 @@ module.exports = function (sequelize, DataTypes) {
         },
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE'
-      },
-      file_path: {
+      }
+      /* file_path: {
         type: DataTypes.STRING(60),
         allowNull: true
-      },
-      nb_likes: {
-        type: DataTypes.SMALLINT.UNSIGNED,
-        allowNull: false,
-        defaultValue: 0
-      }
+      } */
     },
     {
       sequelize,
