@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const httpStatus = require('http-status');
 const { dbModel } = require('../../db/sequelize');
 const User = dbModel.tblUsers;

@@ -2,7 +2,7 @@ const httpStatus = require('http-status');
 const { dbModel } = require('../../db/sequelize');
 const User = dbModel.tblUsers;
 const crypto = require('../../middleware/crypto');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 async function request (user, requestOptions, message, res) {
   await User.update(user, requestOptions);
   return res.json({ message });
