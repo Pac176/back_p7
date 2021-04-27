@@ -36,7 +36,7 @@ exports.login = async (req, res, next) => {
             },
             process.env.JWT_SIGN_SECRET,
             {
-              expiresIn: '48h'
+              expiresIn: '24h'
             }
           ),
           message: 'le mot de passe est bon!'
@@ -77,6 +77,6 @@ exports.verifyPwd = async (req, res, next) => {
   } catch (error) {
     console.log(error);
     return res
-      .status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: error.message });
+      .status(httpStatus.INTERNAL_SERVER_ERROR).json({ message: 'Veuillez entrer votre mot de passe' });
   }
 };
