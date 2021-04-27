@@ -1,4 +1,4 @@
-projet developpé avec nodeJS V15.12
+projet developpé avec nodeJS V14.16
 
  ### Cloner le projet :
 
