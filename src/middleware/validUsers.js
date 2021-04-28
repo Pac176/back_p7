@@ -13,8 +13,8 @@ exports.userSignupValidation = async (req, res, next) => {
     password: Joi.string()
       .regex(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/)
       .min(8)
-      .required()
-
+      .required(),
+    is_admin: Joi.number()
   });
   try {
     await joiSchema.validateAsync(req.body, {
