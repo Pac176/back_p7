@@ -18,11 +18,14 @@ const sequelize = new Sequelize(
 /* le modele de la base est defini */
 const dbModel = initModels(sequelize, DataTypes);
 
-const initDb = () => {
-  // l'option force supprime avant de recommencer la mise en place, sync defini le modele sur la base
-  return sequelize.sync({ force: false }).then((_) => { /// ////////////////////////question: autre methoide que sync pour update seulement
-    console.log('La base de donnée a bien été initialisée !');
-  });
+const initDb = async () => {
+  try {
+    await sequelize.sync({ force: false }).then((_) => { /// ////////////////////////question: autre methoide que sync pour update seulement
+      console.log('La base de donnée a bien été initialisée !');
+    });
+  } catch (error) {
+    console.log('La connexion a échouée');
+  }
 };
 
 module.exports = {
