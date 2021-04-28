@@ -98,6 +98,30 @@ module.exports = {
         user_id: 3,
         createdAt: new Date(),
         updatedAt: new Date()
+      },
+      {
+        id: 13,
+        comment_content: 'Aute dolor fugiat reprehenderit do nisi exercitation nisi deserunt nulla fugiat exercitation incididunt.',
+        post_id: 12,
+        user_id: 3,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 14,
+        comment_content: 'Amet amet non culpa proident excepteur.',
+        post_id: 12,
+        user_id: 2,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        id: 15,
+        comment_content: 'Culpa nisi adipisicing excepteur quis pariatur est reprehenderit esse nostrud magna dolor adipisicing ipsum.',
+        post_id: 12,
+        user_id: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
       }
     ]);
   },
