@@ -4,8 +4,8 @@ const Joi = require('joi');
 
 exports.userSignupValidation = async (req, res, next) => {
   const joiSchema = Joi.object({
-    first_name: Joi.string().min(2).max(50).alphanum().required(),
-    last_name: Joi.string().min(2).max(50).alphanum().required(),
+    first_name: Joi.string().min(2).max(50).regex(/^[a-zA-Z]*$/).required(),
+    last_name: Joi.string().min(2).max(50).regex(/^[a-zA-Z]*$/).required(),
     pseudo: Joi.string().min(2).max(50).required(),
     email: Joi.string()
       .regex(/^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,6}$/)
@@ -60,8 +60,8 @@ exports.userLoginValidation = async (req, res, next) => {
 
 exports.userUpdateValidation = async (req, res, next) => {
   const joiSchema = Joi.object({
-    first_name: Joi.string().min(2).max(50).alphanum(),
-    last_name: Joi.string().min(2).max(50).alphanum(),
+    first_name: Joi.string().min(2).max(50).regex(/^[a-zA-Z]*$/),
+    last_name: Joi.string().min(2).max(50).regex(/^[a-zA-Z]*$/),
     pseudo: Joi.string().min(2).max(50),
     email: Joi.string().regex(/^\w+[\w-\.]*\@\w+((-\w+)|(\w*))\.[a-z]{2,6}$/),
     password: Joi.string()
